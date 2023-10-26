@@ -1,0 +1,699 @@
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+.hidden {
+  visibility: none;
+}
+
+#instruction-text {
+  z-index: 1;
+  font-size: 1.5rem;
+  position: fixed;
+  bottom: 10%;
+  left: 33.33%;
+  color: white;
+}
+
+#container {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#sky {
+  height: 100%;
+  width: 100%;
+  background: url("./assets/Sky.png");
+  background-repeat: repeat-x;
+  background-size: cover;
+  background-position: center;
+  animation: moveClouds 1000s linear infinite;
+}
+
+#clouds {
+  position: absolute;
+  top: -10%;
+  left: 0;
+  width: 100%;
+  height: 80vh;
+  background-image: url("assets/clouds.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  animation: moveClouds 8000s linear infinite;
+}
+
+#buildingLarge {
+  position: absolute;
+  bottom: -30%;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url("assets/buildingLarge.png");
+  background-size: cover;
+
+  background-repeat: no-repeat;
+}
+
+#buildingSmall {
+  position: absolute;
+  bottom: -20%;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-image: url("assets/buildingSmall.png");
+  background-size: cover;
+
+  background-repeat: no-repeat;
+}
+
+@keyframes moveClouds {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes moveHouses {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 100% 0;
+  }
+}
+
+#platform {
+  position: absolute;
+  bottom: 0;
+  left: -500px;
+  width: 19590px;
+  height: 20%;
+  background-image: url("assets/ground.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.blink {
+  animation: blink-animation 1s steps(5, start) 200;
+  -webkit-animation: blink-animation 1s steps(5, start) 200;
+}
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+@-webkit-keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+#main-layer {
+  position: absolute;
+  left: 0;
+  bottom: 19.8%;
+  width: 20000px;
+  /* width: 19589px; */
+}
+
+.splash-container {
+  display: flex;
+  align-items: end;
+  position: absolute;
+  bottom: 0;
+}
+
+.tree-bushy {
+  background-image: url(assets/tree-bushy.png);
+  height: 371px;
+  width: 239px;
+}
+
+.tree-triangle {
+  background-image: url(assets/tree-triangle.png);
+  height: 483px;
+  width: 183px;
+}
+
+.bush-light {
+  background-image: url(assets/bush-light.png);
+  height: 66px;
+  width: 119px;
+}
+
+.bush-dark {
+  background-image: url(assets/bush-dark.png);
+  height: 66px;
+  width: 119px;
+}
+
+.signboard {
+  height: 600px;
+  width: 500px;
+  position: relative;
+  top: 420px;
+  left: 480px;
+}
+
+.signboard-pole {
+  background: url(assets/signboard-pole.png) center/contain no-repeat;
+  position: absolute;
+  height: 598px;
+  width: 380px;
+  bottom: -5px;
+}
+
+.signboard-resume {
+  background-image: url(assets/signboard-resume.png);
+  height: 111px;
+  width: 441px;
+  position: absolute;
+  top: 40px;
+}
+
+.signboard-shafiul {
+  background-image: url(assets/signboard-shafiul.png);
+  height: 149px;
+  width: 498px;
+  position: relative;
+  top: 180px;
+  right: 100px;
+}
+
+.signboard-alam {
+  background-image: url(assets/signboard-alam.png);
+  height: 147px;
+  width: 404px;
+  position: relative;
+  top: 200px;
+}
+
+#tree-1 {
+  position: absolute;
+  left: 280px;
+}
+
+#tree-2 {
+  position: absolute;
+  left: 950px;
+  bottom: 0;
+}
+
+#tree-3 {
+  position: absolute;
+  left: 840px;
+}
+
+#tree-4 {
+  position: absolute;
+  left: 200px;
+}
+
+#bush-1 {
+  position: absolute;
+  left: 560px;
+}
+
+#bush-2 {
+  position: absolute;
+  left: 480px;
+}
+
+#bush-3 {
+  position: absolute;
+  left: 670px;
+}
+
+#bush-4 {
+  position: absolute;
+  left: 750px;
+}
+
+.aboutMe-container {
+  display: flex;
+  align-items: end;
+  position: absolute;
+  left: 1200px;
+  bottom: 0;
+}
+
+.aboutMe {
+  background-image: url(assets/about-me.png);
+  width: 405px;
+  height: 328px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.birthPlace {
+  background-image: url(assets/born&raised.png);
+  width: 318px;
+  height: 678px;
+  margin-right: 100px;
+}
+
+.hobbies {
+  width: 430px;
+  height: 392px;
+  position: relative;
+  bottom: -400px;
+}
+
+.hobbies-board {
+  background-image: url(assets/hobbies.png);
+  width: 426px;
+  height: 392px;
+}
+
+.pot {
+  background-image: url(assets/pot.png);
+  width: 76px;
+  height: 69px;
+  position: absolute;
+  bottom: 0;
+  left: -110px;
+  z-index: 1;
+}
+
+.cuttingBoard {
+  background-image: url(assets/cuttingBoard.png);
+  width: 74px;
+  height: 102px;
+  position: absolute;
+  bottom: 0;
+  left: -50px;
+}
+
+.quest2 {
+  background-image: url(assets/quest2.png);
+  width: 88px;
+  height: 58px;
+  position: absolute;
+  top: -30px;
+  right: 20px;
+}
+
+.luggage {
+  background-image: url(assets/luggage.png);
+  width: 105px;
+  height: 212px;
+  position: absolute;
+  bottom: 0;
+  right: -80px;
+}
+
+.camera {
+  background-image: url(assets/camera.png);
+  width: 79px;
+  height: 55px;
+  position: absolute;
+  bottom: 0;
+  right: -25px;
+}
+
+.flashLight {
+  background: url(assets/flashLight.png);
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-size: contain;
+  z-index: 1;
+  bottom: -10px;
+  right: -70px;
+}
+
+.gamepad {
+  background-image: url(assets/gamepad.png);
+  width: 84px;
+  height: 59px;
+  position: absolute;
+  top: -30px;
+  left: 20px;
+}
+
+.education-container {
+  display: flex;
+  align-items: end;
+  position: absolute;
+  left: 3000px;
+  bottom: 0;
+}
+
+.education {
+  background-image: url(assets/education.png);
+  width: 405px;
+  height: 328px;
+  position: absolute;
+}
+
+.education1 {
+  background-image: url(assets/education1.png);
+  width: 1026px;
+  height: 1029px;
+  left: 745px;
+  z-index: 1;
+  bottom: -1029px;
+  position: absolute;
+}
+
+.rumc {
+  background-image: url(assets/rumc.png);
+  width: 1516px;
+  height: 782px;
+  left: 600px;
+  bottom: 0;
+  position: absolute;
+}
+
+.education2 {
+  background-image: url(assets/education2.png);
+  width: 691px;
+  height: 1035px;
+  left: 2800px;
+  z-index: 1;
+  bottom: -1034px;
+  position: absolute;
+}
+
+.brac {
+  background-image: url(assets/brac.png);
+  width: 787px;
+  height: 1243px;
+  left: 2500px;
+  bottom: -10px;
+  position: absolute;
+}
+
+.skills-container {
+  display: flex;
+  align-items: end;
+  position: absolute;
+  height: 30vh;
+  left: 6700px;
+  bottom: 0;
+}
+
+.skills {
+  background-image: url(assets/skills.png);
+  width: 405px;
+  height: 328px;
+  position: absolute;
+  margin-left: 75px;
+}
+
+.skill-design {
+  height: 930px;
+  width: 1770px;
+  position: relative;
+}
+
+.skill-code {
+  height: 930px;
+  width: 1770px;
+  position: relative;
+  left: 400px;
+}
+
+.skill-board {
+  background-image: url(assets/SkillBoard.png);
+  width: 236px;
+  height: 924px;
+  left: 700px;
+  bottom: 0;
+  position: absolute;
+}
+
+.dash-lines {
+  background-image: url(assets/dash-lines.png);
+  width: 1766px;
+  height: 605px;
+  left: 1000px;
+  top: 80px;
+  bottom: 0;
+  z-index: 1;
+  position: absolute;
+}
+
+.skill-category-design {
+  background-image: url(assets/skill-category-design.png);
+  width: 1129px;
+  height: 92px;
+  top: -200px;
+  left: 1370px;
+  position: absolute;
+}
+
+.skillsTitle {
+  top: -40px;
+  position: absolute;
+}
+
+.skill-trees {
+  display: flex;
+  align-items: end;
+  bottom: -670px;
+  position: absolute;
+  left: 1080px;
+  gap: 62px;
+}
+
+.photoshop-tree {
+  background-image: url(./assets/photoshop-tree.png);
+  width: 232px;
+  height: 735px;
+}
+
+.illustrator-tree {
+  background-image: url(./assets/illustrator-tree.png);
+  width: 232px;
+  height: 622px;
+}
+
+.figma-tree {
+  background-image: url(./assets/figma-tree.png);
+  width: 232px;
+  height: 702px;
+}
+
+.canva-tree {
+  background-image: url(./assets/canva-tree.png);
+  width: 232px;
+  height: 767px;
+}
+
+.afterEffects-tree {
+  background-image: url(./assets/afterEffects-tree.png);
+  width: 232px;
+  height: 613px;
+}
+
+.premierePro-tree {
+  background-image: url(./assets/premierePro-tree.png);
+  width: 232px;
+  height: 556px;
+}
+
+.htmlCss-tree {
+  background-image: url(./assets/htmlCss-tree.png);
+  width: 232px;
+  height: 644px;
+}
+
+.javascript-tree {
+  background-image: url(./assets/javascript-tree.png);
+  width: 232px;
+  height: 567px;
+}
+
+.python-tree {
+  background-image: url(./assets/python-tree.png);
+  width: 232px;
+  height: 579px;
+}
+
+.react-tree {
+  background-image: url(./assets/react-tree.png);
+  width: 232px;
+  height: 609px;
+}
+
+.sql-tree {
+  background-image: url(./assets/sql-tree.png);
+  width: 232px;
+  height: 560px;
+}
+
+.flutterDart-tree {
+  background-image: url(./assets/flutterDart-tree.png);
+  width: 232px;
+  height: 318px;
+}
+
+.skill-category-code {
+  background-image: url(assets/skill-category-code.png);
+  width: 1129px;
+  height: 92px;
+  top: -200px;
+  left: 1370px;
+  position: absolute;
+}
+
+#design-skills {
+  background-image: url(assets/design-skills.png);
+  left: 1100px;
+  width: 1675px;
+  height: 96px;
+}
+
+#code-skills {
+  background-image: url(assets/code-skills.png);
+  left: 1100px;
+  width: 1674px;
+  height: 96px;
+}
+
+.portfolio-container {
+  display: flex;
+  align-items: end;
+  position: absolute;
+  left: 11900px;
+  bottom: 0;
+}
+
+.portfolio {
+  background-image: url(assets/portfolio.png);
+  width: 405px;
+  height: 328px;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+}
+
+.portfolio-tv {
+  background-image: url(assets/portfolio-tv.png);
+  width: 1436px;
+  height: 1002px;
+  left: 650px;
+  bottom: 0;
+  position: absolute;
+}
+
+.portfolio-tv-screen {
+  background-image: url(assets/portfolio-tv-screen.png);
+  width: 880px;
+  height: 710px;
+  position: absolute;
+  left: 279px;
+  top: 148px;
+}
+
+.portfolio-tv-screen > img {
+  box-shadow: 0px 0px 15px 10px;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  border-radius: 50px;
+}
+
+.tv-portfolio-btn {
+  position: absolute;
+  right: 0px;
+  height: 120px;
+  font-size: xx-large;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  width: 100%;
+  border-radius: 30px;
+  cursor: pointer;
+  border: 2px solid black;
+  color: white;
+  background-color: rgba(55, 71, 79, 0.3);
+}
+
+.tv-portfolio-btn:hover {
+  background-color: rgba(55, 71, 79, 0.7);
+}
+
+#designer-btn {
+  top: 200px;
+}
+
+#developer-btn {
+  top: 400px;
+}
+
+.work-experience-container {
+  display: flex;
+  align-items: end;
+  position: absolute;
+  gap: 200px;
+  left: 13900px;
+  bottom: 0;
+}
+
+.work-experience {
+  background-image: url(assets/work-experience.png);
+  width: 405px;
+  height: 328px;
+  margin-left: 350px;
+}
+
+.work-experience-1 {
+  background-image: url(assets/st-exp1.png);
+  width: 1025px;
+  height: 635px;
+}
+
+.work-experience-2 {
+  background-image: url(assets/gd-exp2.png);
+  width: 1025px;
+  height: 635px;
+}
+
+.work-experience-3 {
+  background-image: url(assets/cd-exp3.png);
+  width: 1025px;
+  height: 635px;
+}
+
+.work-experience-4 {
+  background-image: url(assets/cd-exp4.png);
+  width: 1025px;
+  height: 635px;
+}
+
+.find-me-container {
+  display: flex;
+  align-items: end;
+  position: absolute;
+  left: 19900px;
+  bottom: 0;
+}
+
+.find-me {
+  background-image: url(assets/find-me.png);
+  width: 1351px;
+  height: 577px;
+  bottom: -20px;
+  position: absolute;
+}
+
+#character {
+  position: absolute;
+  bottom: 19.9%;
+  left: 50%;
+  width: 5%;
+  height: 10%;
+  background: red;
+  z-index: 1;
+}
