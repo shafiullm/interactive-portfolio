@@ -10,7 +10,10 @@ const step = 50;
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
-      if (entry.isIntersecting && entry.target.classList.contains("hobbies")) {
+      if (
+        entry.isIntersecting &&
+        entry.target.classList.contains("education")
+      ) {
         animateHobbies();
       }
       if (entry.isIntersecting && entry.target.classList.contains("rumc")) {
@@ -21,24 +24,31 @@ const observer = new IntersectionObserver(
       }
       if (
         entry.isIntersecting &&
-        entry.target.classList.contains("skill-trees")
+        entry.target.classList.contains("skill-category-design")
       ) {
-        animateSkillsTree();
+        animateSkillsTree("design");
+      }
+      if (
+        entry.isIntersecting &&
+        entry.target.classList.contains("skill-category-code")
+      ) {
+        animateSkillsTree("skill");
       }
     });
   },
-  { threshold: 0.5 }
+  { threshold: 0.1 }
 );
 
-observer.observe(document.querySelector(".hobbies"));
+observer.observe(document.querySelector(".education"));
 observer.observe(document.querySelector(".rumc"));
 observer.observe(document.querySelector(".brac"));
-observer.observe(document.querySelector(".skill-trees"));
+observer.observe(document.querySelector(".skill-category-design"));
+observer.observe(document.querySelector(".skill-category-code"));
 
-function animateSkillsTree() {
+function animateSkillsTree(name) {
   anime({
-    targets: "#design-tree",
-    translateX: 670,
+    targets: `#${name}-tree`,
+    translateY: -670,
     delay: anime.stagger(150, { direction: "normal" }),
   });
 }

@@ -91,6 +91,7 @@ body {
 }
 
 #platform {
+  visibility: none;
   position: absolute;
   bottom: 0;
   left: -500px;
