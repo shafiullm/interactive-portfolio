@@ -24,6 +24,13 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  zoom: 0.9;
+}
+
+@media only screen and (max-width: 600px) {
+  #container {
+    zoom: 0.6;
+  }
 }
 
 #sky {
@@ -774,6 +781,13 @@ body {
   background: white;
   border-radius: 20px;
   grid-area: 1 / 1 / 2 / 2;
+}
+
+.gmail-icon {
+  background: url(./assets/icons/gmail.png);
+  height: 128px;
+  width: 128px;
+  transform: scale(0.9);
 }
 
 .linkedIn {
