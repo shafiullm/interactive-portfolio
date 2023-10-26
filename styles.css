@@ -27,9 +27,38 @@ body {
   zoom: 0.9;
 }
 
+@media only screen and (max-width: 1920px) {
+  #container {
+    zoom: 0.73;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+  #container {
+    zoom: 0.53;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  #container {
+    zoom: 0.5;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  #container {
+    zoom: 0.8;
+  }
+}
 @media only screen and (max-width: 600px) {
   #container {
     zoom: 0.6;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #container {
+    zoom: 0.45;
   }
 }
 
@@ -61,10 +90,9 @@ body {
   bottom: -30%;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-image: url("assets/buildingLarge.png");
   background-size: cover;
-
   background-repeat: no-repeat;
 }
 
@@ -73,10 +101,9 @@ body {
   bottom: -20%;
   left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   background-image: url("assets/buildingSmall.png");
   background-size: cover;
-
   background-repeat: no-repeat;
 }
 
@@ -123,7 +150,6 @@ body {
   left: 0;
   bottom: 19.8%;
   width: 20000px;
-  /* width: 19589px; */
 }
 
 .hobbies-observer {
@@ -137,7 +163,7 @@ body {
 
 .skill1-observer {
   position: absolute;
-  left: 7350px;
+  left: 7650px;
   bottom: 100px;
   width: 200px;
   height: 200px;
@@ -146,7 +172,7 @@ body {
 
 .skill2-observer {
   position: absolute;
-  left: 9550px;
+  left: 9800px;
   bottom: 100px;
   width: 200px;
   height: 200px;
@@ -854,8 +880,8 @@ body {
   position: absolute;
   bottom: 19.9%;
   left: 50%;
-  width: 5%;
-  height: 10%;
+  width: 125px;
+  height: 200px;
   background: red;
   z-index: 1;
 }
