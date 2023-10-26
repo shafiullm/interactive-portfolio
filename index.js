@@ -5,7 +5,8 @@ let housesBack = document.getElementById("buildingLarge");
 let platform = document.getElementById("platform");
 let mainLayer = document.getElementById("main-layer");
 let position = 50;
-const step = 200;
+const step = 100;
+let blinkText = true;
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -112,18 +113,12 @@ function animateEducation(name) {
 
 const flashLight = document.querySelector(".flashLight");
 flashLight.style.opacity = 0;
-const shutterSound = "./assets/cameraShutter.mp3";
-function playSound() {
-  const sound = new Audio(shutterSound);
-  sound.play();
-}
 function animateHobbies() {
   anime({
     targets: ".hobbies",
     translateY: -402,
-    opacity: 1,
+    delay: 500,
     easing: "easeOutQuad",
-    complete: playSound,
   });
 
   const flashLight = document.querySelector(".flashLight");
@@ -147,6 +142,13 @@ function animateHobbies() {
   }, 1500);
 }
 
+function stopBlinkText() {
+  const blinkTextDiv = document.querySelector("#instruction-text");
+  blinkTextDiv.classList.remove("blink");
+  blinkTextDiv.style.opacity = 0;
+  blinkText = true;
+}
+
 animateOpeningBoard = () => {
   anime({
     targets: "#signboard",
@@ -156,6 +158,9 @@ animateOpeningBoard = () => {
 };
 
 function moveCharacter(direction) {
+  if (blinkText) {
+    stopBlinkText();
+  }
   if (direction === "left") {
     if (position < 10) {
       return;
@@ -242,7 +247,37 @@ document.addEventListener("touchmove", function (event) {
 });
 
 window.addEventListener("load", (event) => {
-  animateOpeningBoard();
+  setTimeout(function () {
+    document.getElementById("preloader").style.display = "none";
+  }, 2000);
+
+  anime({
+    targets: houses,
+    backgroundPositionX: -position * 2 + "px",
+    easing: "easeOutQuad",
+  });
+
+  anime({
+    targets: housesBack,
+    backgroundPositionX: -position * 1.8 + "px",
+    easing: "easeOutQuad",
+  });
+
+  anime({
+    targets: platform,
+    backgroundPositionX: -position * 2 + "px",
+    easing: "easeOutQuad",
+  });
+
+  anime({
+    targets: mainLayer,
+    translateX: -position * 2 + "px",
+    easing: "easeOutQuad",
+  });
+
+  setTimeout(() => {
+    animateOpeningBoard();
+  }, 2000);
 });
 
 function openGmail() {
