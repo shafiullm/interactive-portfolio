@@ -5,14 +5,14 @@ let housesBack = document.getElementById("buildingLarge");
 let platform = document.getElementById("platform");
 let mainLayer = document.getElementById("main-layer");
 let position = 50;
-const step = 50;
+const step = 200;
 
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (
         entry.isIntersecting &&
-        entry.target.classList.contains("education")
+        entry.target.classList.contains("hobbies-observer")
       ) {
         animateHobbies();
       }
@@ -32,24 +32,73 @@ const observer = new IntersectionObserver(
         entry.isIntersecting &&
         entry.target.classList.contains("skill-category-code")
       ) {
-        animateSkillsTree("skill");
+        animateSkillsTree("code");
+      }
+      if (
+        entry.isIntersecting &&
+        entry.target.classList.contains("work1-observer")
+      ) {
+        animateWorkExperience("1");
+      }
+      if (
+        entry.isIntersecting &&
+        entry.target.classList.contains("work2-observer")
+      ) {
+        animateWorkExperience("2");
+      }
+      if (
+        entry.isIntersecting &&
+        entry.target.classList.contains("work3-observer")
+      ) {
+        animateWorkExperience("3");
+      }
+      if (
+        entry.isIntersecting &&
+        entry.target.classList.contains("work4-observer")
+      ) {
+        animateWorkExperience("4");
       }
     });
   },
   { threshold: 0.1 }
 );
 
-observer.observe(document.querySelector(".education"));
+observer.observe(document.querySelector(".hobbies-observer"));
 observer.observe(document.querySelector(".rumc"));
 observer.observe(document.querySelector(".brac"));
 observer.observe(document.querySelector(".skill-category-design"));
 observer.observe(document.querySelector(".skill-category-code"));
+observer.observe(document.querySelector(".work1-observer"));
+observer.observe(document.querySelector(".work2-observer"));
+observer.observe(document.querySelector(".work3-observer"));
+observer.observe(document.querySelector(".work4-observer"));
+
+function animateWorkExperience(number) {
+  anime({
+    targets: `.work-experience-${number}`,
+    translateY: -500,
+    endDelay: 5000,
+    direction: "alternate",
+  });
+}
 
 function animateSkillsTree(name) {
   anime({
     targets: `#${name}-tree`,
     translateY: -670,
     delay: anime.stagger(150, { direction: "normal" }),
+    complete: function (anim) {
+      animateDashLines(name);
+    },
+  });
+}
+
+function animateDashLines(name) {
+  anime({
+    targets: `#dash-lines-${name}`,
+    opacity: 1,
+    duration: 150,
+    easing: "linear",
   });
 }
 
@@ -195,3 +244,38 @@ document.addEventListener("touchmove", function (event) {
 window.addEventListener("load", (event) => {
   animateOpeningBoard();
 });
+
+function openGmail() {
+  var email = "shafiullm@gmail.com";
+  var subject = "[From Interactive Resume Website]";
+  var body = "Your message here";
+  window.open(
+    "mailto:" + email + "?subject=" + subject + "&body=" + body,
+    "_blank"
+  );
+}
+
+function openInstagram() {
+  var instagramURL = "https://www.instagram.com/shafiullm";
+  window.open(instagramURL, "_blank");
+}
+
+function openFacebook() {
+  var instagramURL = "https://facebook.com/shafiullm";
+  window.open(instagramURL, "_blank");
+}
+
+function openGithub() {
+  var instagramURL = "https://github.com/shafiullm";
+  window.open(instagramURL, "_blank");
+}
+
+function openLinkedIn() {
+  var instagramURL = "https://www.instagram.com/shafiullm";
+  window.open(instagramURL, "_blank");
+}
+
+function openBehance() {
+  var instagramURL = "https://www.behance.net/shafiullm";
+  window.open(instagramURL, "_blank");
+}

@@ -1,6 +1,7 @@
 body {
   margin: 0;
   overflow: hidden;
+  font-family: "Source Sans 3", sans-serif;
 }
 
 .hidden {
@@ -32,7 +33,7 @@ body {
   background-repeat: repeat-x;
   background-size: cover;
   background-position: center;
-  animation: moveClouds 1000s linear infinite;
+  animation: moveHorizontally 1000s linear infinite;
 }
 
 #clouds {
@@ -45,7 +46,7 @@ body {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  animation: moveClouds 8000s linear infinite;
+  animation: moveHorizontally 8000s linear infinite;
 }
 
 #buildingLarge {
@@ -72,16 +73,7 @@ body {
   background-repeat: no-repeat;
 }
 
-@keyframes moveClouds {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 100% 0;
-  }
-}
-
-@keyframes moveHouses {
+@keyframes moveHorizontally {
   from {
     background-position: 0 0;
   }
@@ -125,6 +117,69 @@ body {
   bottom: 19.8%;
   width: 20000px;
   /* width: 19589px; */
+}
+
+.hobbies-observer {
+  position: absolute;
+  left: 2350px;
+  bottom: 100px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
+.skill1-observer {
+  position: absolute;
+  left: 7350px;
+  bottom: 100px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
+.skill2-observer {
+  position: absolute;
+  left: 9550px;
+  bottom: 100px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
+.work1-observer {
+  position: absolute;
+  left: 15300px;
+  bottom: 100px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
+.work2-observer {
+  position: absolute;
+  left: 16300px;
+  bottom: 100px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
+.work3-observer {
+  position: absolute;
+  left: 17600px;
+  bottom: 100px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
+.work4-observer {
+  position: absolute;
+  left: 18800px;
+  bottom: 100px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
 }
 
 .splash-container {
@@ -443,6 +498,7 @@ body {
   bottom: 0;
   z-index: 1;
   position: absolute;
+  opacity: 0;
 }
 
 .skill-category-design {
@@ -611,12 +667,11 @@ body {
   right: 0px;
   height: 120px;
   font-size: xx-large;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   width: 100%;
   border-radius: 30px;
   cursor: pointer;
   border: 2px solid black;
+  font-family: "Source Sans 3", sans-serif;
   color: white;
   background-color: rgba(55, 71, 79, 0.3);
 }
@@ -637,9 +692,17 @@ body {
   display: flex;
   align-items: end;
   position: absolute;
-  gap: 200px;
   left: 13900px;
   bottom: 0;
+}
+
+.work-experiences {
+  display: flex;
+  gap: 200px;
+  align-items: end;
+  position: absolute;
+  bottom: -500px;
+  left: 1000px;
 }
 
 .work-experience {
@@ -647,6 +710,7 @@ body {
   width: 405px;
   height: 328px;
   margin-left: 350px;
+  margin-right: 0;
 }
 
 .work-experience-1 {
@@ -681,12 +745,95 @@ body {
   bottom: 0;
 }
 
+.social-link-container {
+  position: absolute;
+  left: 475px;
+  bottom: 130px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 20px;
+}
+
+.social-link-container > div:nth-child(3n) {
+  grid-column-gap: 0;
+}
+
 .find-me {
   background-image: url(assets/find-me.png);
   width: 1351px;
   height: 577px;
   bottom: -20px;
   position: absolute;
+}
+
+.gmail {
+  height: 128px;
+  width: 128px;
+  background: white;
+  border-radius: 20px;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.linkedIn {
+  height: 128px;
+  width: 128px;
+  background: url(./assets/icons/linkedin.png);
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.instagram {
+  height: 128px;
+  width: 128px;
+  background: url(./assets/icons/instagram.png);
+  grid-area: 1 / 3 / 2 / 4;
+}
+.facebook {
+  height: 128px;
+  width: 128px;
+  background: url(./assets/icons/facebook.png);
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.github {
+  height: 128px;
+  width: 128px;
+  background-color: white;
+  background: url(./assets/icons/github.png);
+  grid-area: 2 / 2 / 3 / 3;
+}
+
+.behance {
+  height: 128px;
+  width: 128px;
+  background: url(./assets/icons/behance.png);
+  grid-area: 2 / 3 / 3 / 4;
+}
+
+.find-me-text {
+  right: 12px;
+  top: -105px;
+  letter-spacing: 1px;
+  text-align: center;
+  font-size: 1.2rem;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  color: brown;
+  grid-area: 1 / 1 / 2 / 5;
+}
+
+#find-me-icon {
+  -webkit-transform: scale(1);
+  transform: scale(0.9);
+  transition: transform 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
+  cursor: pointer;
+}
+
+#find-me-icon:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1);
 }
 
 #character {
