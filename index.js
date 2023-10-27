@@ -238,9 +238,9 @@ document.addEventListener("touchmove", function (event) {
   let diffX = initialX - currentX;
 
   if (diffX > 0) {
-    moveCharacter("left");
-  } else {
     moveCharacter("right");
+  } else {
+    moveCharacter("left");
   }
 
   initialX = null;
