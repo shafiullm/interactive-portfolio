@@ -25,13 +25,13 @@ const observer = new IntersectionObserver(
       }
       if (
         entry.isIntersecting &&
-        entry.target.classList.contains("skill-category-design")
+        entry.target.classList.contains("skill1-observer")
       ) {
         animateSkillsTree("design");
       }
       if (
         entry.isIntersecting &&
-        entry.target.classList.contains("skill-category-code")
+        entry.target.classList.contains("skill2-observer")
       ) {
         animateSkillsTree("code");
       }
@@ -67,8 +67,8 @@ const observer = new IntersectionObserver(
 observer.observe(document.querySelector(".hobbies-observer"));
 observer.observe(document.querySelector(".rumc"));
 observer.observe(document.querySelector(".brac"));
-observer.observe(document.querySelector(".skill-category-design"));
-observer.observe(document.querySelector(".skill-category-code"));
+observer.observe(document.querySelector(".skill1-observer"));
+observer.observe(document.querySelector(".skill2-observer"));
 observer.observe(document.querySelector(".work1-observer"));
 observer.observe(document.querySelector(".work2-observer"));
 observer.observe(document.querySelector(".work3-observer"));
@@ -245,12 +245,13 @@ function moveCharacter(direction) {
 }
 
 function navigateTV(option) {
+  document.querySelector(".instruction-tv").style.visibility = "hidden";
   if (option === "design") {
-    document.querySelector(".developer-box-tv").style.visibility = "hidden";
-    document.querySelector(".design-box-tv").style.visibility = "visible";
+    document.querySelector(".developer-box-bg").style.visibility = "hidden";
+    document.querySelector(".design-box-bg").style.visibility = "visible";
   } else if (option === "developer") {
-    document.querySelector(".developer-box-tv").style.visibility = "visible";
-    document.querySelector(".design-box-tv").style.visibility = "hidden";
+    document.querySelector(".developer-box-bg").style.visibility = "visible";
+    document.querySelector(".design-box-bg").style.visibility = "hidden";
   }
 }
 
@@ -293,6 +294,31 @@ document.addEventListener("touchmove", function (event) {
   }
 
   initialX = null;
+});
+
+// Mobile Tap Support
+let startX = null;
+
+document.addEventListener("touchstart", function (event) {
+  startX = event.touches[0].clientX;
+});
+
+document.addEventListener("touchend", function (event) {
+  if (startX === null) {
+    return;
+  }
+
+  let endX = event.changedTouches[0].clientX;
+
+  let diffX = startX - endX;
+
+  if (diffX > 0) {
+    moveCharacter("right");
+  } else {
+    moveCharacter("left");
+  }
+
+  startX = null;
 });
 
 window.addEventListener("load", (event) => {
@@ -408,4 +434,21 @@ function openLinkedIn() {
 function openBehance() {
   var instagramURL = "https://www.behance.net/shafiullm";
   window.open(instagramURL, "_blank");
+}
+
+function redirect(type) {
+  var targetURL;
+  if (type === "browse-all") openBehance();
+  else if (type === "uiux")
+    targetURL = "https://www.behance.net/gallery/182786365/UIUX-Design";
+  else if (type === "animated")
+    targetURL = "https://www.behance.net/gallery/110075935/Promotional-Videos";
+  else if (type === "graphics")
+    targetURL =
+      "https://www.behance.net/gallery/89831675/Flyers-Banners-Cards-Others";
+  else if (type === "promos")
+    targetURL = "https://www.behance.net/gallery/85478355/Portfolio-Video";
+  else if (type === "logos")
+    targetURL = "https://www.behance.net/gallery/85479043/Logo-Designs";
+  window.open(targetURL, "_blank");
 }

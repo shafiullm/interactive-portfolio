@@ -83,13 +83,13 @@ body {
 
 @media only screen and (max-width: 1920px) {
   #container {
-    zoom: 0.73;
+    zoom: 0.7;
   }
 }
 
 @media only screen and (max-width: 1366px) {
   #container {
-    zoom: 0.53;
+    zoom: 0.5;
   }
 }
 
@@ -814,9 +814,80 @@ body {
   height: 710px;
   position: absolute;
   border-radius: 130px;
-  background-color: grey;
+  background: url("https://i.gifer.com/757F.gif");
   left: 279px;
   top: 148px;
+}
+
+.instruction-tv {
+  height: 500px;
+  width: 500px;
+  left: 195px;
+  position: absolute;
+  top: 105px;
+  border-radius: 50px;
+  font-size: 2.7rem;
+  color: white;
+  text-align: center;
+}
+
+.design-box-header,
+.developer-box-header {
+  position: absolute;
+  top: -20px;
+  left: 285px;
+  font-size: 1.25rem;
+  color: white;
+}
+
+.developer-box-header {
+  top: 10px;
+}
+
+.design-box-bg {
+  background: rgb(1, 0, 20);
+  background: linear-gradient(
+    326deg,
+    rgba(1, 0, 20, 1) 0%,
+    rgba(2, 0, 36, 1) 35%,
+    rgba(0, 0, 0, 1) 68%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.developer-box-bg {
+  background: rgb(17, 0, 20);
+  background: linear-gradient(
+    326deg,
+    rgba(17, 0, 20, 1) 0%,
+    rgba(2, 0, 36, 1) 35%,
+    rgba(0, 0, 0, 1) 68%,
+    rgba(0, 0, 0, 1) 100%
+  );
+}
+
+.tv-designer-btn {
+  background-color: #546e7a;
+}
+
+.tv-developer-btn {
+  background-color: #757575;
+}
+
+.design-box-bg {
+  width: 880px;
+  height: 710px;
+  border-radius: 130px;
+  visibility: hidden;
+}
+
+.developer-box-bg {
+  width: 880px;
+  height: 710px;
+  border-radius: 130px;
+  position: absolute;
+  top: 0px;
+  visibility: hidden;
 }
 
 .developer-box-tv {
@@ -826,10 +897,13 @@ body {
   top: 135px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 20px;
-  grid-row-gap: 30px;
+  grid-column-gap: 30px;
+  grid-row-gap: 40px;
   align-items: center;
-  visibility: hidden;
+  align-items: center;
+  font-size: 2rem;
+  text-align: center;
+  cursor: pointer;
 }
 
 .developer-box1 {
@@ -848,23 +922,46 @@ body {
   grid-area: 1 / 2 / 2 / 3;
 }
 
+#dbox {
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#drbox {
+  background: rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+#dbox:hover,
+#drbox:hover {
+  box-shadow: 0px 0px 10px 8px rgba(110, 110, 110, 0.75);
+  -webkit-box-shadow: 0px 0px 10px 8px rgba(110, 110, 110, 0.75);
+  -moz-box-shadow: 0px 0px 10px 8px rgba(110, 110, 110, 0.75);
+}
+
 .design-box-tv {
   display: grid;
   position: absolute;
-  left: 80px;
-  top: 30px;
+  left: 65px;
+  top: 80px;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  grid-column-gap: 10px;
+  grid-column-gap: 30px;
   grid-row-gap: 30px;
   align-items: center;
-  visibility: hidden;
+  font-size: 2rem;
+  text-align: center;
+  cursor: pointer;
 }
 
 .design-box1 {
   width: 230px;
   border-radius: 30px;
-  height: 300px;
+  height: 280px;
   background-color: skyblue;
   grid-area: 1 / 1 / 2 / 2;
 }
@@ -872,7 +969,7 @@ body {
 .design-box2 {
   width: 230px;
   border-radius: 30px;
-  height: 300px;
+  height: 280px;
   background-color: skyblue;
   grid-area: 1 / 2 / 2 / 3;
 }
@@ -880,7 +977,7 @@ body {
 .design-box3 {
   width: 230px;
   border-radius: 30px;
-  height: 300px;
+  height: 280px;
   background-color: skyblue;
   grid-area: 1 / 3 / 2 / 4;
 }
@@ -888,7 +985,7 @@ body {
 .design-box4 {
   width: 230px;
   border-radius: 30px;
-  height: 300px;
+  height: 280px;
   background-color: skyblue;
   grid-area: 2 / 1 / 3 / 2;
 }
@@ -896,7 +993,7 @@ body {
 .design-box5 {
   width: 230px;
   border-radius: 30px;
-  height: 300px;
+  height: 280px;
   background-color: skyblue;
   grid-area: 2 / 2 / 3 / 3;
 }
@@ -904,7 +1001,7 @@ body {
 .design-box6 {
   width: 230px;
   border-radius: 30px;
-  height: 300px;
+  height: 280px;
   background-color: skyblue;
   grid-area: 2 / 3 / 3 / 4;
 }
@@ -923,14 +1020,6 @@ body {
   margin: 35px 0px;
   top: 590px;
   left: 48px;
-}
-
-.tv-designer-btn {
-  background-color: #4caf50;
-}
-
-.tv-developer-btn {
-  background-color: #f44336;
 }
 
 .tv-designer-btn:active,
