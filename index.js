@@ -89,7 +89,23 @@ function animateSkillsTree(name) {
     translateY: -670,
     delay: anime.stagger(150, { direction: "normal" }),
     complete: function (anim) {
-      animateDashLines(name);
+      anime({
+        targets: `#${name}-tree`,
+        scale: 1.1,
+        duration: 1000,
+        easing: "easeInOutSine",
+        complete: function (anim) {
+          anime({
+            targets: `#${name}-tree`,
+            scale: 1,
+            duration: 800,
+            easing: "easeInOutSine",
+            complete: function (anim) {
+              animateDashLines(name);
+            },
+          });
+        },
+      });
     },
   });
 }
@@ -157,6 +173,31 @@ animateOpeningBoard = () => {
   });
 };
 
+var cInterval;
+
+function stopCharacterAnimation() {
+  clearInterval(cInterval);
+}
+
+function animateCharacter(side) {
+  var position = 200;
+  const interval = 200;
+  const diff = 200;
+
+  cInterval = setInterval(() => {
+    character = document.getElementById("character");
+    character.style.backgroundImage = `url("./assets/character/scooter-${side}.png")`;
+    character.style.backgroundPosition = `-${position}px 0px`;
+
+    if (position < 600) {
+      position = position + diff;
+    } else {
+      stopAnimate();
+      position = 200;
+    }
+  }, interval);
+}
+
 function moveCharacter(direction) {
   if (blinkText) {
     stopBlinkText();
@@ -165,11 +206,15 @@ function moveCharacter(direction) {
     if (position < 10) {
       return;
     }
+    stopCharacterAnimation();
+    animateCharacter("left");
     position -= step;
   } else if (direction === "right") {
     if (position > 10250) {
       return;
     }
+    stopCharacterAnimation();
+    animateCharacter("right");
     position += step;
   }
   console.log(position);
@@ -199,11 +244,15 @@ function moveCharacter(direction) {
   });
 }
 
-document.getElementById("designer-btn").addEventListener("click", function () {
-  let url = "https://www.behance.net/shafiullm";
-  let win = window.open(url, "_blank");
-  win.opener = null;
-});
+function navigateTV(option) {
+  if (option === "design") {
+    document.querySelector(".developer-box-tv").style.visibility = "hidden";
+    document.querySelector(".design-box-tv").style.visibility = "visible";
+  } else if (option === "developer") {
+    document.querySelector(".developer-box-tv").style.visibility = "visible";
+    document.querySelector(".design-box-tv").style.visibility = "hidden";
+  }
+}
 
 document.addEventListener("keydown", function (event) {
   if (event.key === "ArrowLeft") {
@@ -279,6 +328,52 @@ window.addEventListener("load", (event) => {
     animateOpeningBoard();
   }, 2000);
 });
+
+function openHobbiesText(type) {
+  const textBox = document.querySelector(".hobbies-text-box");
+  const paragraph = document.querySelector(".hobbies-paragraph");
+  textBox.style.opacity = 0;
+  textBox.style.visibility = "visible";
+  textBox.style.transform = "translateY(100px)";
+  if (type === "photography") {
+    paragraph.textContent =
+      "Ah, Shafi, the photographic prodigy, has been perfecting his craft since the dawn of time. Only a mere 5% (also only the edited and manipulated ones) of his otherworldly shots grace his Instagram. And just when you thought he was a one-trick pony, brace yourself for his epic videography skills, where only a few edited ones are showcased in those Instagram stories.";
+  } else if (type === "crafting") {
+    paragraph.textContent =
+      "Shafi, the creative maestro, soaked up Art Attack and MAD since childhood. Despite deviating from his dream of architecture (thanks to endless hours spent on playing SimCity, Cities XL, and RollerCoaster Tycoon) to pursue computer science, his love for crafting remains unwavering. With popsicles and glue guns in hand, he's all set to dive back into his artistic escapades.";
+  } else if (type === "travelling") {
+    paragraph.textContent =
+      "Shafi, the perpetual explorer, thrives on capturing the world through his lens while journeying across landscapes. Despite limited childhood travels, he's been uncovering the beauty of his own country lately. Yet, the allure of global adventure tugs at his soul, urging him to break free from the confines of his hometown. Fingers crossed for that opportunity to explore the uncharted corners of the world!";
+  } else if (type === "gaming") {
+    paragraph.textContent =
+      "Shafi, the born gamer, started conquering pixels at the age of 3, from DX Ball to Call of Duty 4, FIFA, and NFS Most Wanted 2005 at age 9 in Gameranger. After a detour in competitive League of Legends and CS:GO, he's now ruling Valorant with his crew, proving that some things just never change, even as an adult. He's also invested in his sim racing wheel and the VR world.";
+  } else if (type === "cooking") {
+    paragraph.textContent =
+      "Ah, the kitchen prodigy, Shafi, started his culinary adventures at a ripe 7 as he remembers, conjuring up memories of whipping ravioli for his dear nanu. From his humble microwave oven cakes to his triumph in mastering Italian delicacies, he's now the ultimate maestro, effortlessly maneuvering through the realms of pizza, ramen, and beyond. Watch out, Gordon Ramsay!";
+  }
+
+  anime({
+    targets: ".hobbies-text-box",
+    translateY: 0,
+    opacity: 1,
+    visibility: "visible",
+    easing: "easeOutExpo",
+    duration: 1000,
+    delay: 500,
+  });
+
+  setTimeout(() => {
+    anime({
+      targets: ".hobbies-text-box",
+      translateY: 100,
+      opacity: 0,
+      visibility: "hidden",
+      easing: "easeOutExpo",
+      duration: 1000,
+      delay: 10000,
+    });
+  }, 15000);
+}
 
 function openGmail() {
   var email = "shafiullm@gmail.com";
