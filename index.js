@@ -180,20 +180,20 @@ function stopCharacterAnimation() {
 }
 
 function animateCharacter(side) {
-  var position = 200;
-  const interval = 200;
-  const diff = 200;
+  var position = 320;
+  const interval = 150;
+  const diff = 320;
 
   cInterval = setInterval(() => {
     character = document.getElementById("character");
     character.style.backgroundImage = `url("./assets/character/scooter-${side}.png")`;
     character.style.backgroundPosition = `-${position}px 0px`;
 
-    if (position < 600) {
+    if (position < 960) {
       position = position + diff;
     } else {
       stopAnimate();
-      position = 200;
+      position = 320;
     }
   }, interval);
 }
