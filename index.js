@@ -179,26 +179,38 @@ animateOpeningBoard = () => {
 };
 
 var cInterval;
+var characterAnimationPosition = 320;
+var characterAnimationImages = [];
+var characterAnimationImageURLs = [
+  "./assets/character/scooter-left.png",
+  "./assets/character/scooter-right.png",
+];
+characterAnimationImageURLs.forEach((url) => {
+  var img = new Image();
+  img.src = url;
+  characterAnimationImages.push(img);
+});
 
 function stopCharacterAnimation() {
   clearInterval(cInterval);
 }
 
 function animateCharacter(side) {
-  var position = 320;
   const interval = 150;
   const diff = 320;
 
   cInterval = setInterval(() => {
     character = document.getElementById("character");
-    character.style.backgroundImage = `url("./assets/character/scooter-${side}.png")`;
-    character.style.backgroundPosition = `-${position}px 0px`;
+    character.style.backgroundImage = `url("${
+      characterAnimationImages[side === "left" ? 0 : 1].src
+    }")`;
+    character.style.backgroundPosition = `-${characterAnimationPosition}px 0px`;
 
-    if (position < 960) {
-      position = position + diff;
+    if (characterAnimationPosition < 960) {
+      characterAnimationPosition = characterAnimationPosition + diff;
     } else {
-      stopAnimate();
-      position = 320;
+      stopCharacterAnimation();
+      characterAnimationPosition = 320;
     }
   }, interval);
 }
@@ -222,7 +234,6 @@ function moveCharacter(direction) {
     animateCharacter("right");
     position += step;
   }
-  console.log(position);
 
   anime({
     targets: houses,
