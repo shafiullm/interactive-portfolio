@@ -7,6 +7,7 @@ let mainLayer = document.getElementById("main-layer");
 let position = 50;
 const step = 100;
 let blinkText = true;
+let timeout;
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -84,6 +85,7 @@ function animateWorkExperience(number) {
 }
 
 function animateSkillsTree(name) {
+  let timeout;
   anime({
     targets: `#${name}-tree`,
     translateY: -670,
@@ -101,7 +103,10 @@ function animateSkillsTree(name) {
             duration: 800,
             easing: "easeInOutSine",
             complete: function (anim) {
-              animateDashLines(name);
+              clearTimeout(timeout);
+              timeout = setTimeout(() => {
+                animateDashLines(name);
+              }, 500);
             },
           });
         },
@@ -383,20 +388,24 @@ function openHobbiesText(type) {
     translateY: 0,
     opacity: 1,
     visibility: "visible",
-    easing: "easeOutExpo",
+    easing: "linear",
     duration: 1000,
-    delay: 500,
+    delay: 0,
   });
 
-  setTimeout(() => {
+  if (timeout) {
+    clearTimeout(timeout);
+  }
+
+  timeout = setTimeout(() => {
     anime({
       targets: ".hobbies-text-box",
       translateY: 100,
       opacity: 0,
       visibility: "hidden",
-      easing: "easeOutExpo",
-      duration: 1000,
-      delay: 10000,
+      easing: "linear",
+      duration: 500,
+      delay: 0,
     });
   }, 15000);
 }

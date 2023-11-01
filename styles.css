@@ -517,20 +517,22 @@ body {
 
 .hobbies-text-box {
   width: 426px;
-  height: 240px;
+  height: auto;
   border-radius: 40px;
   position: absolute;
-  background-color: rgba(0, 0, 0, 0.35);
+  background-color: rgba(255, 255, 255, 0.75);
+  color: black;
   bottom: 460px;
   left: 0px;
   visibility: hidden;
+  z-index: -1;
 }
 
 .hobbies-text-box > p {
-  padding: 4px 10px;
-  color: white;
-  font-size: 1.15rem;
-  text-align: center;
+  padding: 0px 20px;
+  font-size: 1.5rem;
+  line-height: 1.15;
+  text-align: justify;
 }
 
 .photography:hover,
@@ -754,7 +756,7 @@ body {
   left: 1000px;
   top: 42px;
   bottom: 0;
-  z-index: 1;
+  z-index: -1;
   position: absolute;
   opacity: 0;
 }
@@ -791,7 +793,7 @@ body {
 .illustrator-tree {
   background-image: url(./assets/tree-35.png);
   width: 157px;
-  height: 516px;
+  height: 664px;
 }
 
 .figma-tree {
@@ -809,7 +811,7 @@ body {
 .afterEffects-tree {
   background-image: url(./assets/tree-35.png);
   width: 157px;
-  height: 516px;
+  height: 664px;
 }
 
 .premierePro-tree {
@@ -833,7 +835,7 @@ body {
 .python-tree {
   background-image: url(./assets/tree-35.png);
   width: 157px;
-  height: 516px;
+  height: 664px;
 }
 
 .react-tree {
@@ -1116,10 +1118,25 @@ body {
   left: 48px;
 }
 
+.tv-designer-btn:hover::before,
+.tv-developer-btn:hover::before {
+  content: attr(data-text);
+  background-color: rgba(255, 255, 255, 0.75);
+  color: black;
+  border-radius: 30px;
+  position: absolute;
+  top: -80px;
+  font-size: 1.15rem;
+  padding: 10px;
+  left: -12px;
+  width: 100px;
+  height: 50px;
+}
+
 .tv-designer-btn:active,
 .tv-developer-btn:active {
-  transform: translateY(4px);
-  box-shadow: 0 10px 0 #000000;
+  transform: translateY(10px);
+  box-shadow: 0 10px 0 rgba(0, 0, 0, 0.35);
 }
 
 .work-experience-container {
