@@ -180,34 +180,30 @@ animateOpeningBoard = () => {
 
 var cInterval;
 var characterAnimationPosition = 320;
-var characterAnimationImages = [];
+var characterAnimationImage = new Image();
 var characterAnimationImageURLs = [
   "./assets/character/scooter-left.png",
   "./assets/character/scooter-right.png",
 ];
-characterAnimationImageURLs.forEach((url) => {
-  var img = new Image();
-  img.src = url;
-  characterAnimationImages.push(img);
-});
+characterAnimationImage.src = characterAnimationImageURLs[0];
 
 function stopCharacterAnimation() {
   clearInterval(cInterval);
 }
 
 function animateCharacter(side) {
+  var character = document.getElementById("character");
   const interval = 150;
   const diff = 320;
 
   cInterval = setInterval(() => {
-    character = document.getElementById("character");
     character.style.backgroundImage = `url("${
-      characterAnimationImages[side === "left" ? 0 : 1].src
+      characterAnimationImageURLs[side === "left" ? 0 : 1]
     }")`;
     character.style.backgroundPosition = `-${characterAnimationPosition}px 0px`;
 
     if (characterAnimationPosition < 960) {
-      characterAnimationPosition = characterAnimationPosition + diff;
+      characterAnimationPosition += diff;
     } else {
       stopCharacterAnimation();
       characterAnimationPosition = 320;

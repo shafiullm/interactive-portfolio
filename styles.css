@@ -78,10 +78,11 @@ body {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  zoom: 0.9;
 }
 
 #container {
-  zoom: 70%;
+  zoom: 75%;
 }
 
 @media (max-width: 1920px) {
@@ -1063,6 +1064,38 @@ body {
   z-index: 1;
   position: relative;
   top: -275px;
+}
+
+.gif-box1 {
+  background: url("assets/gifs/uiux.gif");
+}
+
+.gif-box2 {
+  background: url("assets/gifs/animated.gif");
+}
+
+.gif-box3 {
+  background: url("assets/gifs/graphics.gif");
+}
+
+.gif-box4 {
+  background: url("assets/gifs/promos.gif");
+}
+
+.gif-box5 {
+  background: url("assets/gifs/logos.gif");
+}
+
+.gif-box6 {
+  background: url("assets/gifs/browseall.gif");
+}
+
+.gif-box7 {
+  background: url("https://media2.giphy.com/media/kHfUyPaDUDBY11l4DZ/200.webp?cid=ecf05e47r67pbjpjv0k0nw7l48apmgrvzr7p6mj48ci3tpxk&ep=v1_gifs_search&rid=200.webp&ct=g");
+}
+
+.gif-box8 {
+  background: url("https://media2.giphy.com/media/kHfUyPaDUDBY11l4DZ/200.webp?cid=ecf05e47r67pbjpjv0k0nw7l48apmgrvzr7p6mj48ci3tpxk&ep=v1_gifs_search&rid=200.webp&ct=g");
 }
 
 #gif-box {
