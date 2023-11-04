@@ -197,7 +197,6 @@ function animateCharacter(side) {
     if (position < 960) {
       position = position + diff;
     } else {
-      stopAnimate();
       position = 320;
     }
   }, interval);
@@ -222,7 +221,6 @@ function moveCharacter(direction) {
     animateCharacter("right");
     position += step;
   }
-  console.log(position);
 
   anime({
     targets: houses,
@@ -299,31 +297,6 @@ document.addEventListener("touchmove", function (event) {
   }
 
   initialX = null;
-});
-
-// Mobile Tap Support
-let startX = null;
-
-document.addEventListener("touchstart", function (event) {
-  startX = event.touches[0].clientX;
-});
-
-document.addEventListener("touchend", function (event) {
-  if (startX === null) {
-    return;
-  }
-
-  let endX = event.changedTouches[0].clientX;
-
-  let diffX = startX - endX;
-
-  if (diffX > 0) {
-    moveCharacter("right");
-  } else {
-    moveCharacter("left");
-  }
-
-  startX = null;
 });
 
 window.addEventListener("load", (event) => {
