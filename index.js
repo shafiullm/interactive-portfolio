@@ -179,34 +179,26 @@ animateOpeningBoard = () => {
 };
 
 var cInterval;
-var characterAnimationPosition = 320;
-var characterAnimationImage = new Image();
-var characterAnimationImageURLs = [
-  "./assets/character/scooter-left.png",
-  "./assets/character/scooter-right.png",
-];
-characterAnimationImage.src = characterAnimationImageURLs[0];
 
 function stopCharacterAnimation() {
   clearInterval(cInterval);
 }
 
 function animateCharacter(side) {
-  var character = document.getElementById("character");
+  var position = 320;
   const interval = 150;
   const diff = 320;
 
   cInterval = setInterval(() => {
-    character.style.backgroundImage = `url("${
-      characterAnimationImageURLs[side === "left" ? 0 : 1]
-    }")`;
-    character.style.backgroundPosition = `-${characterAnimationPosition}px 0px`;
+    character = document.getElementById("character");
+    character.style.backgroundImage = `url("./assets/character/scooter-${side}.png")`;
+    character.style.backgroundPosition = `-${position}px 0px`;
 
-    if (characterAnimationPosition < 960) {
-      characterAnimationPosition += diff;
+    if (position < 960) {
+      position = position + diff;
     } else {
-      stopCharacterAnimation();
-      characterAnimationPosition = 320;
+      stopAnimate();
+      position = 320;
     }
   }, interval);
 }
@@ -230,6 +222,7 @@ function moveCharacter(direction) {
     animateCharacter("right");
     position += step;
   }
+  console.log(position);
 
   anime({
     targets: houses,
