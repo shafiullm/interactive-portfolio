@@ -69,6 +69,7 @@ body {
   transform: translateX(-50%);
   font-family: "Source Sans 3", sans-serif;
   color: white;
+  text-align: center;
 }
 
 #container {
@@ -222,15 +223,15 @@ body {
 
 #clouds {
   position: absolute;
-  top: -10%;
+  top: -600px;
   left: 0;
   width: 100%;
-  height: 80vh;
+  height: 1131px;
   background-image: url("assets/clouds.png");
-  background-position: center;
+  background-position: left;
   background-size: cover;
-  background-repeat: no-repeat;
-  animation: moveHorizontally 8000s linear infinite;
+  background-repeat: repeat-x;
+  animation: moveHorizontally 1000s linear infinite;
 }
 
 #buildingLarge {
@@ -241,7 +242,7 @@ body {
   height: 100%;
   background-image: url("assets/buildingLarge.png");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
 }
 
 #buildingSmall {
@@ -252,7 +253,7 @@ body {
   height: 100%;
   background-image: url("assets/buildingSmall.png");
   background-size: cover;
-  background-repeat: no-repeat;
+  background-repeat: repeat-x;
 }
 
 @keyframes moveHorizontally {
@@ -272,9 +273,9 @@ body {
   width: 19590px;
   height: 20%;
   background-image: url("assets/ground.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
+  background-size: contain;
+  background-repeat: repeat-x;
+  background-position: left;
 }
 
 .blink {
@@ -516,21 +517,21 @@ body {
 }
 
 .hobbies-text-box {
-  width: 426px;
+  width: 476px;
   height: auto;
   border-radius: 40px;
   position: absolute;
   background-color: rgba(255, 255, 255, 0.75);
   color: black;
   bottom: 460px;
-  left: 0px;
+  left: -25px;
   visibility: hidden;
   z-index: -1;
 }
 
 .hobbies-text-box > p {
   padding: 0px 20px;
-  font-size: 1.5rem;
+  font-size: 1.9rem;
   line-height: 1.15;
   text-align: justify;
 }

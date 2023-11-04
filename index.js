@@ -196,7 +196,7 @@ function stopCharacterAnimation() {
 }
 
 function animateCharacter(side) {
-  const interval = 150;
+  const interval = 170;
   const diff = 320;
 
   cInterval = setInterval(() => {
