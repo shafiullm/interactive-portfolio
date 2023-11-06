@@ -8,6 +8,31 @@ body {
   visibility: none;
 }
 
+.tapToMove-container {
+  display: flex;
+  visibility: hidden;
+}
+
+.arrow {
+  width: 50%;
+  position: absolute;
+  bottom: 0;
+  height: 20vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  opacity: 1;
+  z-index: 1;
+}
+
+.left-arrow {
+}
+
+.right-arrow {
+  right: 0;
+}
+
 #preloader {
   position: fixed;
   top: 0;
@@ -62,9 +87,9 @@ body {
 
 #instruction-text {
   z-index: 1;
-  font-size: 2rem;
+  font-size: 2.75rem;
   position: fixed;
-  bottom: 10%;
+  bottom: 7%;
   left: 50%;
   transform: translateX(-50%);
   font-family: "Source Sans 3", sans-serif;
@@ -675,11 +700,11 @@ body {
 
 .education1 {
   background-image: url(assets/education1.png);
-  width: 1026px;
-  height: 1029px;
-  left: 745px;
+  width: 800px;
+  height: 500px;
+  left: 955px;
   z-index: 1;
-  bottom: -1029px;
+  bottom: -450px;
   position: absolute;
 }
 
@@ -694,11 +719,11 @@ body {
 
 .education2 {
   background-image: url(assets/education2.png);
-  width: 691px;
-  height: 1035px;
-  left: 2800px;
+  width: 812px;
+  height: 312px;
+  left: 2495px;
   z-index: 1;
-  bottom: -1034px;
+  bottom: -360px;
   position: absolute;
 }
 

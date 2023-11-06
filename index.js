@@ -128,8 +128,20 @@ function animateEducation(name) {
   anime({
     targets: `.${name}`,
     translateY: -1029,
+    opacity: 1,
     easing: "linear",
+    duration: 2000,
   });
+
+  setTimeout(() => {
+    anime({
+      targets: `.${name}`,
+      translateY: 0,
+      opacity: 0,
+      easing: "linear",
+      duration: 2000,
+    });
+  }, 15000);
 }
 
 const flashLight = document.querySelector(".flashLight");
@@ -138,7 +150,7 @@ function animateHobbies() {
   anime({
     targets: ".hobbies",
     translateY: -402,
-    delay: 500,
+    delay: 250,
     easing: "easeOutQuad",
   });
 
@@ -165,9 +177,12 @@ function animateHobbies() {
 
 function stopBlinkText() {
   const blinkTextDiv = document.querySelector("#instruction-text");
+  const tapToMoveDiv = document.querySelector(".tapToMove-container");
   blinkTextDiv.classList.remove("blink");
   blinkTextDiv.style.opacity = 0;
-  blinkText = true;
+  tapToMoveDiv.classList.remove("blink");
+  tapToMoveDiv.style.opacity = 0;
+  blinkText = false;
 }
 
 animateOpeningBoard = () => {
@@ -287,55 +302,17 @@ window.addEventListener("wheel", function (event) {
   }
 });
 
-// Mobile Swipe Support
-let initialX = null;
-
-document.addEventListener("touchstart", function (event) {
-  initialX = event.touches[0].clientX;
-});
-
-document.addEventListener("touchmove", function (event) {
-  if (initialX === null) {
-    return;
+function detectMobileDevice() {
+  const isMobile =
+    /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+  if (isMobile) {
+    document.getElementById("instruction-text").textContent =
+      "Tap on Left or Right Side of the Platform to Move";
+    document.querySelector(".tapToMove-container").style.visibility = "visible";
   }
-
-  let currentX = event.touches[0].clientX;
-
-  let diffX = initialX - currentX;
-
-  if (diffX > 0) {
-    moveCharacter("right");
-  } else {
-    moveCharacter("left");
-  }
-
-  initialX = null;
-});
-
-// Mobile Tap Support
-let startX = null;
-
-document.addEventListener("touchstart", function (event) {
-  startX = event.touches[0].clientX;
-});
-
-document.addEventListener("touchend", function (event) {
-  if (startX === null) {
-    return;
-  }
-
-  let endX = event.changedTouches[0].clientX;
-
-  let diffX = startX - endX;
-
-  if (diffX > 0) {
-    moveCharacter("right");
-  } else {
-    moveCharacter("left");
-  }
-
-  startX = null;
-});
+}
 
 window.addEventListener("load", (event) => {
   setTimeout(function () {
@@ -369,6 +346,8 @@ window.addEventListener("load", (event) => {
   setTimeout(() => {
     animateOpeningBoard();
   }, 2000);
+
+  detectMobileDevice();
 });
 
 function openHobbiesText(type) {
