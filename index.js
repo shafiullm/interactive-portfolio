@@ -8,6 +8,10 @@ let position = 50;
 const step = 100;
 let blinkText = true;
 let timeout;
+const isMobile =
+  /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -177,11 +181,10 @@ function animateHobbies() {
 
 function stopBlinkText() {
   const blinkTextDiv = document.querySelector("#instruction-text");
-  const tapToMoveDiv = document.querySelector(".tapToMove-container");
+  const tapToMoveDiv = document.querySelector("#tapToMove-container");
   blinkTextDiv.classList.remove("blink");
   blinkTextDiv.style.opacity = 0;
   tapToMoveDiv.classList.remove("blink");
-  tapToMoveDiv.style.opacity = 0;
   blinkText = false;
 }
 
@@ -231,6 +234,7 @@ function animateCharacter(side) {
 }
 
 function moveCharacter(direction) {
+  console.log("Position:", position);
   if (blinkText) {
     stopBlinkText();
   }
@@ -302,22 +306,56 @@ window.addEventListener("wheel", function (event) {
   }
 });
 
+let holdTimeout = null;
+let isHolding = false;
+
+document
+  .querySelector(".left-arrow")
+  .addEventListener("touchstart", function (event) {
+    event.preventDefault();
+    isHolding = true;
+    holdTimeout = setTimeout(continuousMove.bind(null, "left"), 200);
+  });
+
+document
+  .querySelector(".right-arrow")
+  .addEventListener("touchstart", function (event) {
+    event.preventDefault();
+    isHolding = true;
+    holdTimeout = setTimeout(continuousMove.bind(null, "right"), 200);
+  });
+
+document.querySelector(".left-arrow").addEventListener("touchend", function () {
+  isHolding = false;
+  clearTimeout(holdTimeout);
+});
+
+document
+  .querySelector(".right-arrow")
+  .addEventListener("touchend", function () {
+    isHolding = false;
+    clearTimeout(holdTimeout);
+  });
+
+function continuousMove(direction) {
+  if (isHolding) {
+    moveCharacter(direction);
+    holdTimeout = setTimeout(continuousMove.bind(null, direction), 200);
+  }
+}
+
 function detectMobileDevice() {
-  const isMobile =
-    /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-      navigator.userAgent
-    );
   if (isMobile) {
     document.getElementById("instruction-text").textContent =
       "Tap on Left or Right Side of the Platform to Move";
-    document.querySelector(".tapToMove-container").style.opacity = 1;
+    document.querySelector("#tapToMove-container").style.opacity = 1;
   }
 }
 
 window.addEventListener("load", (event) => {
   setTimeout(function () {
     document.getElementById("preloader").style.display = "none";
-  }, 2000);
+  }, 1000);
 
   anime({
     targets: houses,
@@ -345,7 +383,7 @@ window.addEventListener("load", (event) => {
 
   setTimeout(() => {
     animateOpeningBoard();
-  }, 2000);
+  }, 1000);
 
   detectMobileDevice();
 });
