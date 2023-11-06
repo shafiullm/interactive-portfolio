@@ -347,7 +347,7 @@ function continuousMove(direction) {
 function detectMobileDevice() {
   if (isMobile) {
     document.getElementById("instruction-text").textContent =
-      "Tap on Left or Right Side of the Platform to Move";
+      "Hold on Left or Right Arrow of the Platform to Move";
     document.querySelector("#tapToMove-container").style.opacity = 1;
   }
 }
