@@ -10,7 +10,7 @@ body {
 
 .tapToMove-container {
   display: flex;
-  visibility: hidden;
+  opacity: 0;
 }
 
 .arrow {
@@ -24,6 +24,13 @@ body {
   font-size: 24px;
   opacity: 1;
   z-index: 1;
+}
+
+.arrow > img {
+  transform: scale(0.5);
+  opacity: 0.5;
+  position: absolute;
+  top: 12.5%;
 }
 
 .left-arrow {
@@ -546,7 +553,7 @@ body {
   height: auto;
   border-radius: 40px;
   position: absolute;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.9);
   color: black;
   bottom: 460px;
   left: -25px;
@@ -713,7 +720,7 @@ body {
   width: 1516px;
   height: 782px;
   left: 600px;
-  bottom: 0;
+  bottom: -2px;
   position: absolute;
 }
 
@@ -1246,26 +1253,26 @@ body {
 
 .work-experience-1 {
   background-image: url(assets/st-exp1.png);
-  width: 1025px;
-  height: 635px;
+  width: 800px;
+  height: 1000px;
 }
 
 .work-experience-2 {
   background-image: url(assets/gd-exp2.png);
-  width: 1025px;
-  height: 635px;
+  width: 800px;
+  height: 1000px;
 }
 
 .work-experience-3 {
   background-image: url(assets/cd-exp3.png);
-  width: 1025px;
-  height: 635px;
+  width: 800px;
+  height: 1000px;
 }
 
 .work-experience-4 {
   background-image: url(assets/cd-exp4.png);
-  width: 1025px;
-  height: 635px;
+  width: 800px;
+  height: 1000px;
 }
 
 .find-me-container {

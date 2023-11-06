@@ -310,7 +310,7 @@ function detectMobileDevice() {
   if (isMobile) {
     document.getElementById("instruction-text").textContent =
       "Tap on Left or Right Side of the Platform to Move";
-    document.querySelector(".tapToMove-container").style.visibility = "visible";
+    document.querySelector(".tapToMove-container").style.opacity = 1;
   }
 }
 
