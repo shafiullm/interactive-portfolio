@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/hammer.js/2.0.8/hammer.min.js"
+      integrity="sha512-UXumZrZNiOwnTcZSHLOfcTs0aos2MzBWHXOHOuB0J/R44QB0dwY5JgfbvljXcklVf65Gc4El6RjZ+lnwd2az2g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
     <title>Shafi's Resume</title>
     <link
       rel="apple-touch-icon"
@@ -33,7 +39,7 @@
   <body>
     <div id="preloader">
       <div class="loader">
-        <h1>Shafi is curating the Portfolio</h1>
+        <h1>Shafi is curating the Interactive Resume</h1>
         <div class="balls">
           <div class="ball"></div>
           <div class="ball"></div>
@@ -41,14 +47,7 @@
         </div>
       </div>
     </div>
-    <div id="tapToMove-container">
-      <div class="arrow left-arrow" onclick="moveCharacter('left')">
-        <img src="./assets/leftArrow.png" />
-      </div>
-      <div class="arrow right-arrow" onclick="moveCharacter('right')">
-        <img src="./assets/rightArrow.png" />
-      </div>
-    </div>
+    <div id="swipeToMove-container"></div>
     <div id="container">
       <div id="instruction-text" class="blink">
         Scroll Up or Down / Press Left or Right Arrow
@@ -88,6 +87,10 @@
           <div class="birthPlace"></div>
           <div class="hobbies">
             <div class="hobbies-board"></div>
+            <h2 class="hobbies-instruction">
+              Click on Hobbies to<br />
+              Know More
+            </h2>
             <div class="hobbies-text-box">
               <p class="hobbies-paragraph"></p>
             </div>

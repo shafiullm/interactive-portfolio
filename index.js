@@ -8,10 +8,6 @@ let position = 50;
 const step = 100;
 let blinkText = true;
 let timeout;
-const isMobile =
-  /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
-    navigator.userAgent
-  );
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -156,6 +152,14 @@ function animateHobbies() {
     translateY: -402,
     delay: 250,
     easing: "easeOutQuad",
+    complete: function (anim) {
+      anime({
+        targets: ".hobbies-instruction",
+        opacity: 1,
+        duration: 500,
+        easing: "easeInQuad",
+      });
+    },
   });
 
   const flashLight = document.querySelector(".flashLight");
@@ -181,10 +185,10 @@ function animateHobbies() {
 
 function stopBlinkText() {
   const blinkTextDiv = document.querySelector("#instruction-text");
-  const tapToMoveDiv = document.querySelector("#tapToMove-container");
+  const swipeToMoveDiv = document.querySelector("#swipeToMove-container");
   blinkTextDiv.classList.remove("blink");
   blinkTextDiv.style.opacity = 0;
-  tapToMoveDiv.classList.remove("blink");
+  swipeToMoveDiv.classList.remove("blink");
   blinkText = false;
 }
 
@@ -306,49 +310,28 @@ window.addEventListener("wheel", function (event) {
   }
 });
 
-let holdTimeout = null;
-let isHolding = false;
+const swipeToMoveContainer = document.getElementById("swipeToMove-container");
+const hammer = new Hammer(swipeToMoveContainer);
 
-document
-  .querySelector(".left-arrow")
-  .addEventListener("touchstart", function (event) {
-    event.preventDefault();
-    isHolding = true;
-    holdTimeout = setTimeout(continuousMove.bind(null, "left"), 200);
-  });
-
-document
-  .querySelector(".right-arrow")
-  .addEventListener("touchstart", function (event) {
-    event.preventDefault();
-    isHolding = true;
-    holdTimeout = setTimeout(continuousMove.bind(null, "right"), 200);
-  });
-
-document.querySelector(".left-arrow").addEventListener("touchend", function () {
-  isHolding = false;
-  clearTimeout(holdTimeout);
+hammer.on("swipeleft", function () {
+  moveCharacter("right");
 });
 
-document
-  .querySelector(".right-arrow")
-  .addEventListener("touchend", function () {
-    isHolding = false;
-    clearTimeout(holdTimeout);
-  });
-
-function continuousMove(direction) {
-  if (isHolding) {
-    moveCharacter(direction);
-    holdTimeout = setTimeout(continuousMove.bind(null, direction), 200);
-  }
-}
+hammer.on("swiperight", function () {
+  moveCharacter("left");
+});
 
 function detectMobileDevice() {
+  const isMobile =
+    /iPhone|iPad|iPod|Android|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+      navigator.userAgent
+    );
+
   if (isMobile) {
-    document.getElementById("instruction-text").textContent =
-      "Hold on Left or Right Arrow of the Platform to Move";
-    document.querySelector("#tapToMove-container").style.opacity = 1;
+    const instructionText = document.getElementById("instruction-text");
+    instructionText.textContent = "Swipe Left or Right on the Platform to Move";
+  } else {
+    swipeToMoveContainer.style.visibility = "hidden";
   }
 }
 
@@ -391,6 +374,8 @@ window.addEventListener("load", (event) => {
 function openHobbiesText(type) {
   const textBox = document.querySelector(".hobbies-text-box");
   const paragraph = document.querySelector(".hobbies-paragraph");
+  const hobbiesInstruction = document.querySelector(".hobbies-instruction");
+  hobbiesInstruction.style.visibility = "hidden";
   textBox.style.opacity = 0;
   textBox.style.visibility = "visible";
   textBox.style.transform = "translateY(100px)";

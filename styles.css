@@ -4,29 +4,6 @@ body {
   font-family: "Source Sans 3", sans-serif;
 }
 
-.arrow {
-  width: 50%;
-  position: absolute;
-  bottom: 0;
-  height: 20vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  z-index: 1;
-}
-
-.arrow > img {
-  transform: scale(0.25);
-  opacity: 0.5;
-  position: absolute;
-  top: 12.5%;
-}
-
-.right-arrow {
-  right: 0;
-}
-
 #preloader {
   position: fixed;
   top: 0;
@@ -83,6 +60,14 @@ body {
   50% {
     transform: translateY(-20px);
   }
+}
+
+#swipeToMove-container {
+  position: absolute;
+  bottom: 0;
+  height: 20vh;
+  width: 100%;
+  z-index: 1;
 }
 
 #instruction-text {
@@ -541,6 +526,16 @@ body {
   height: 392px;
 }
 
+.hobbies-instruction {
+  position: relative;
+  bottom: 500px;
+  font-family: "Source Sans 3", sans-serif;
+  font-weight: 300;
+  color: white;
+  text-align: center;
+  opacity: 0;
+}
+
 .hobbies-text-box {
   width: 476px;
   height: auto;
@@ -558,7 +553,7 @@ body {
   padding: 0px 20px;
   font-size: 1.9rem;
   line-height: 1.15;
-  text-align: justify;
+  text-align: left;
 }
 
 .photography:hover,
