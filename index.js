@@ -7,6 +7,7 @@ let mainLayer = document.getElementById("main-layer");
 let position = 50;
 const step = 100;
 let blinkText = true;
+let catStep = 0;
 let timeout;
 
 const observer = new IntersectionObserver(
@@ -39,28 +40,44 @@ const observer = new IntersectionObserver(
       }
       if (
         entry.isIntersecting &&
+        entry.target.classList.contains("portfolio-observer")
+      ) {
+        if (catStep == 0) animateCat();
+      }
+      if (
+        entry.isIntersecting &&
         entry.target.classList.contains("work1-observer")
       ) {
         animateWorkExperience("1", work1Animated);
         animateBlueBird();
+        if (catStep == 1) animateCat();
       }
       if (
         entry.isIntersecting &&
         entry.target.classList.contains("work2-observer")
       ) {
+        animateYellowBird();
         animateWorkExperience("2", work2Animated);
+        if (catStep == 2) animateCat();
       }
       if (
         entry.isIntersecting &&
         entry.target.classList.contains("work3-observer")
       ) {
         animateWorkExperience("3", work3Animated);
+        if (catStep == 3) animateCat();
       }
       if (
         entry.isIntersecting &&
         entry.target.classList.contains("work4-observer")
       ) {
         animateWorkExperience("4", work4Animated);
+      }
+      if (
+        entry.isIntersecting &&
+        entry.target.classList.contains("findMe-observer")
+      ) {
+        animateFindMe();
       }
     });
   },
@@ -72,10 +89,12 @@ observer.observe(document.querySelector(".rumc"));
 observer.observe(document.querySelector(".brac"));
 observer.observe(document.querySelector(".skill1-observer"));
 observer.observe(document.querySelector(".skill2-observer"));
+observer.observe(document.querySelector(".portfolio-observer"));
 observer.observe(document.querySelector(".work1-observer"));
 observer.observe(document.querySelector(".work2-observer"));
 observer.observe(document.querySelector(".work3-observer"));
 observer.observe(document.querySelector(".work4-observer"));
+observer.observe(document.querySelector(".findMe-observer"));
 
 let work1Animated = false;
 let work2Animated = false;
@@ -148,7 +167,7 @@ function animateSkillsTree(name) {
   anime({
     targets: `#${name}-tree`,
     translateY: -670,
-    delay: anime.stagger(150, { direction: "normal" }),
+    delay: anime.stagger(200, { direction: "normal" }),
     // complete: function (anim) {
     //   anime({
     //     targets: `#${name}-tree`,
@@ -328,6 +347,60 @@ function animateCharacter(side) {
   }, interval);
 }
 
+const totalFramesCat = 48;
+const frameWidthCat = 380;
+const frameIntervalCat = 30;
+let currentFrameCat = 0;
+let catWalk = false;
+let catStopping = false; // New flag to indicate if the cat is stopping
+const cat = document.getElementById("cat");
+
+function animateCatWalk(currentFrame) {
+  if (!catStopping) {
+    // Check if the cat is in the process of stopping
+    cat.style.display = "block";
+    const positionCat = -currentFrame * frameWidthCat;
+    cat.style.backgroundPosition = `${positionCat}px 0`;
+    currentFrame = (currentFrame + 1) % totalFramesCat;
+
+    if (catWalk) {
+      setTimeout(() => animateCatWalk(currentFrame), frameIntervalCat);
+    }
+  }
+}
+
+function animateCat() {
+  if (!catWalk && catStep < 4) {
+    catWalk = true;
+    animateCatWalk(currentFrameCat);
+
+    const targetLeft = 3200 + catStep * 1000;
+    anime({
+      targets: "#cat",
+      left: targetLeft,
+      easing: "linear",
+      duration: 5000,
+      complete: function (anim) {
+        catStopping = true; // Set the flag to indicate that the cat is stopping
+        anime({
+          targets: "#cat",
+          duration: 300,
+          complete: function (anim) {
+            anim.reset();
+            setTimeout(() => {
+              anime({ targets: "#cat", left: targetLeft, duration: 1 });
+              cat.style.display = "none";
+              catWalk = false;
+              catStopping = false; // Reset the flag when the stopping is complete
+              catStep++;
+            }, 100);
+          },
+        });
+      },
+    });
+  }
+}
+
 const birdBlue = document.getElementById("bird-blue");
 const birdYellow = document.getElementById("bird-yellow");
 let birdBlueFly = false;
@@ -397,6 +470,29 @@ function animateYellowBird() {
   }
 }
 
+let findMeAnimated = false;
+
+function animateFindMe() {
+  if (!findMeAnimated) {
+    findMeAnimated = true;
+
+    anime({
+      targets: [".find-me-container .find-me-item", ".social-link-container"],
+      translateY: -1000,
+      delay: anime.stagger(200, { direction: "normal" }),
+      easing: "easeInOutQuad",
+      complete: function () {
+        anime({
+          targets: ".social-link-container",
+          opacity: [0, 1],
+          scale: [1, 1.3],
+          easing: "easeInOutQuad",
+          duration: 1000,
+        });
+      },
+    });
+  }
+}
 function moveCharacter(direction) {
   console.log("Position:", position);
   if (blinkText) {
@@ -410,8 +506,10 @@ function moveCharacter(direction) {
     animateCharacter("left");
     position -= step;
   } else if (direction === "right") {
-    if (position > 10250) {
+    if (position > 9750) {
       return;
+    } else if (position < 9750 && position > 9600) {
+      // animateFindMe();
     }
     stopCharacterAnimation();
     animateCharacter("right");

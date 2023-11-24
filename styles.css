@@ -338,6 +338,15 @@ body {
   z-index: 1;
 }
 
+.portfolio-observer {
+  position: absolute;
+  left: 14000px;
+  bottom: 400px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
 .work1-observer {
   position: absolute;
   left: 15300px;
@@ -369,6 +378,15 @@ body {
   position: absolute;
   left: 18800px;
   bottom: 400px;
+  width: 200px;
+  height: 200px;
+  z-index: 1;
+}
+
+.findMe-observer {
+  position: absolute;
+  left: 20200px;
+  bottom: 50px;
   width: 200px;
   height: 200px;
   z-index: 1;
@@ -803,6 +821,12 @@ body {
   position: absolute;
   left: 1080px;
   gap: 147px;
+}
+
+.tree-lightgreen {
+  background-image: url(./assets/tree-lightgreen.png);
+  width: 232px;
+  height: 644px;
 }
 
 .photoshop-tree {
@@ -1334,18 +1358,20 @@ body {
   align-items: end;
   position: absolute;
   left: 19900px;
-  bottom: 0;
+  bottom: -1000px;
 }
 
 .social-link-container {
   position: absolute;
-  left: 475px;
-  bottom: 130px;
+  left: 177px;
+  bottom: 440px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
   grid-column-gap: 30px;
   grid-row-gap: 20px;
+  opacity: 0;
+  transform: scale(1);
 }
 
 .social-link-container > div:nth-child(3n) {
@@ -1354,8 +1380,8 @@ body {
 
 .find-me {
   background-image: url(assets/find-me.png);
-  width: 1351px;
-  height: 577px;
+  width: 800px;
+  height: 1000px;
   bottom: -20px;
   position: absolute;
 }
@@ -1411,11 +1437,10 @@ body {
 }
 
 .find-me-text {
-  right: 12px;
-  top: -105px;
-  letter-spacing: 1px;
+  right: 13px;
+  top: -125px;
   text-align: center;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   height: 100%;
   width: 100%;
   position: relative;
@@ -1433,6 +1458,46 @@ body {
 #find-me-icon:hover {
   -webkit-transform: scale(1.1);
   transform: scale(1);
+}
+
+#tree-5 {
+  position: absolute;
+  left: -500px;
+}
+
+#tree-6 {
+  position: absolute;
+  left: -250px;
+}
+
+#wbb-5 {
+  position: absolute;
+  left: -50px;
+}
+
+#tree-7 {
+  position: absolute;
+  left: 220px;
+}
+
+#tree-8 {
+  position: absolute;
+  left: 1075px;
+}
+
+#tree-9 {
+  position: absolute;
+  left: 825px;
+}
+
+#wbb-6 {
+  position: absolute;
+  left: 520px;
+}
+
+#tree-10 {
+  position: absolute;
+  left: 400px;
 }
 
 #bird-blue {
@@ -1455,6 +1520,16 @@ body {
   height: 320px;
   display: none;
   z-index: 1;
+}
+
+#cat {
+  position: absolute;
+  bottom: -20px;
+  left: 1720px;
+  /* left: 3200px; */
+  background: url("./assets/catWalkRight.png");
+  width: 380px;
+  height: 320px;
 }
 
 #character {
