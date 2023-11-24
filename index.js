@@ -19,10 +19,11 @@ const observer = new IntersectionObserver(
         animateHobbies();
       }
       if (entry.isIntersecting && entry.target.classList.contains("rumc")) {
-        animateEducation("education1");
+        animateEducation("education1", education1Animated);
+        animateYellowBird();
       }
       if (entry.isIntersecting && entry.target.classList.contains("brac")) {
-        animateEducation("education2");
+        animateEducation("education2", education2Animated);
       }
       if (
         entry.isIntersecting &&
@@ -40,25 +41,26 @@ const observer = new IntersectionObserver(
         entry.isIntersecting &&
         entry.target.classList.contains("work1-observer")
       ) {
-        animateWorkExperience("1");
+        animateWorkExperience("1", work1Animated);
+        animateBlueBird();
       }
       if (
         entry.isIntersecting &&
         entry.target.classList.contains("work2-observer")
       ) {
-        animateWorkExperience("2");
+        animateWorkExperience("2", work2Animated);
       }
       if (
         entry.isIntersecting &&
         entry.target.classList.contains("work3-observer")
       ) {
-        animateWorkExperience("3");
+        animateWorkExperience("3", work3Animated);
       }
       if (
         entry.isIntersecting &&
         entry.target.classList.contains("work4-observer")
       ) {
-        animateWorkExperience("4");
+        animateWorkExperience("4", work4Animated);
       }
     });
   },
@@ -75,12 +77,69 @@ observer.observe(document.querySelector(".work2-observer"));
 observer.observe(document.querySelector(".work3-observer"));
 observer.observe(document.querySelector(".work4-observer"));
 
-function animateWorkExperience(number) {
+let work1Animated = false;
+let work2Animated = false;
+let work3Animated = false;
+let work4Animated = false;
+
+function animateWorkExperience(number, alreadyAnimatedFlag) {
+  if (alreadyAnimatedFlag) {
+    return;
+  }
+
+  if (number === "1") {
+    work1Animated = true;
+    animateSecondWorkAnimationFirst(number);
+  } else if (number === "2") {
+    work2Animated = true;
+    animateSecondWorkAnimationFirst(number);
+  } else if (number === "3") {
+    work3Animated = true;
+    animateSecondWorkAnimationFirst(number);
+  } else if (number === "4") {
+    work4Animated = true;
+    animateSecondWorkAnimationFirst(number);
+  }
+
   anime({
     targets: `.work-experience-${number}`,
     translateY: -500,
-    endDelay: 5000,
+    endDelay: 10000,
     direction: "alternate",
+    complete: function (anim) {
+      animateSecondWorkAnimation(number);
+    },
+  });
+}
+
+function animateSecondWorkAnimationFirst(number) {
+  anime({
+    targets: [`#wbb-${number}`, `#wbf-${number}`],
+    translateY: [
+      { value: -150, duration: 200, easing: "easeInOutQuad" },
+      { value: 0, duration: 175, easing: "easeInOutQuad" },
+    ],
+  });
+}
+
+function animateSecondWorkAnimation(number) {
+  anime({
+    targets: [`#wbb-${number}`, `#wbf-${number}`],
+    translateY: [
+      { value: -150, duration: 200, easing: "easeInOutQuad" },
+      { value: 0, duration: 175, easing: "easeInOutQuad" },
+    ],
+    complete: function () {
+      if (number === "1") {
+        work1Animated = false;
+      } else if (number === "2") {
+        work2Animated = false;
+      } else if (number === "3") {
+        work3Animated = false;
+      } else if (number === "4") {
+        work4Animated = false;
+      }
+    },
   });
 }
 
@@ -90,28 +149,37 @@ function animateSkillsTree(name) {
     targets: `#${name}-tree`,
     translateY: -670,
     delay: anime.stagger(150, { direction: "normal" }),
+    // complete: function (anim) {
+    //   anime({
+    //     targets: `#${name}-tree`,
+    //     filter: "hue-rotate(360deg)",
+    //     duration: 1000,
+    //     easing: "easeInOutSine",
     complete: function (anim) {
       anime({
         targets: `#${name}-tree`,
-        scale: 1.1,
-        duration: 1000,
+        filter: "hue-rotate(360deg)",
+        duration: 2000,
         easing: "easeInOutSine",
         complete: function (anim) {
-          anime({
-            targets: `#${name}-tree`,
-            scale: 1,
-            duration: 800,
-            easing: "easeInOutSine",
-            complete: function (anim) {
-              clearTimeout(timeout);
-              timeout = setTimeout(() => {
-                animateDashLines(name);
-              }, 500);
-            },
-          });
+          clearTimeout(timeout);
+          timeout = setTimeout(() => {
+            animateDashLines(name);
+          }, 500);
         },
       });
     },
+  });
+}
+//   });
+// }
+
+function animateDashLines(name) {
+  anime({
+    targets: `#dash-lines-${name}`,
+    opacity: 1,
+    duration: 150,
+    easing: "linear",
   });
 }
 
@@ -124,13 +192,28 @@ function animateDashLines(name) {
   });
 }
 
-function animateEducation(name) {
+let education1Animated = false;
+let education2Animated = false;
+
+function animateEducation(name, alreadyAnimatedFlag) {
+  if (alreadyAnimatedFlag) {
+    return; // Don't run the animation if it has already been animated
+  }
+
   anime({
     targets: `.${name}`,
     translateY: -1029,
     opacity: 1,
     easing: "linear",
     duration: 2000,
+    complete: function () {
+      // Set the flag to indicate that the animation has completed
+      if (name === "education1") {
+        education1Animated = true;
+      } else if (name === "education2") {
+        education2Animated = true;
+      }
+    },
   });
 
   setTimeout(() => {
@@ -140,6 +223,14 @@ function animateEducation(name) {
       opacity: 0,
       easing: "linear",
       duration: 2000,
+      complete: function () {
+        // Set the flag to indicate that the animation has completed
+        if (name === "education1") {
+          education1Animated = false;
+        } else if (name === "education2") {
+          education2Animated = false;
+        }
+      },
     });
   }, 15000);
 }
@@ -235,6 +326,75 @@ function animateCharacter(side) {
       characterAnimationPosition = 320;
     }
   }, interval);
+}
+
+const birdBlue = document.getElementById("bird-blue");
+const birdYellow = document.getElementById("bird-yellow");
+let birdBlueFly = false;
+let birdYellowFly = false;
+const totalFrames = 30;
+const frameWidth = 400;
+let currentFrameBlue = 0;
+let currentFrameYellow = 0;
+const frameInterval = 20;
+
+function animateBird(bird, currentFrame) {
+  bird.style.display = "block";
+  const position = -currentFrame * frameWidth;
+  bird.style.backgroundPosition = `${position}px 0`;
+  currentFrame = (currentFrame + 1) % totalFrames;
+
+  // Continue the animation only if it's flagged to run
+  if (birdBlueFly && bird === birdBlue) {
+    setTimeout(() => animateBird(bird, currentFrame), frameInterval);
+  }
+  if (birdYellowFly && bird === birdYellow) {
+    setTimeout(() => animateBird(bird, currentFrame), frameInterval);
+  }
+}
+
+function animateBlueBird() {
+  // Check if the animation is already running
+  if (!birdBlueFly) {
+    birdBlueFly = true; // Set the flag to indicate the animation is running
+    currentFrameBlue = 0; // Reset the frame counter
+
+    animateBird(birdBlue, currentFrameBlue);
+    anime({
+      targets: "#bird-blue",
+      right: "500%",
+      easing: "linear",
+      duration: 15000,
+      complete: function (anim) {
+        anim.reset();
+        anime({ targets: "#bird-blue", right: "-200%", duration: 1 });
+        birdBlue.style.display = "none";
+        birdBlueFly = false;
+      },
+    });
+  }
+}
+
+function animateYellowBird() {
+  // Check if the animation is already running
+  if (!birdYellowFly) {
+    birdYellowFly = true; // Set the flag to indicate the animation is running
+    currentFrameYellow = 0; // Reset the frame counter
+
+    animateBird(birdYellow, currentFrameYellow);
+    anime({
+      targets: "#bird-yellow",
+      right: "500%",
+      easing: "linear",
+      duration: 15000,
+      complete: function (anim) {
+        anim.reset();
+        anime({ targets: "#bird-yellow", right: "-200%", duration: 1 });
+        birdYellow.style.display = "none";
+        birdYellowFly = false;
+      },
+    });
+  }
 }
 
 function moveCharacter(direction) {
@@ -472,5 +632,8 @@ function redirect(type) {
     targetURL = "https://www.behance.net/gallery/85478355/Portfolio-Video";
   else if (type === "logos")
     targetURL = "https://www.behance.net/gallery/85479043/Logo-Designs";
+  else if (type === "webdev")
+    targetURL =
+      "https://www.behance.net/gallery/184956777/Web-Design-and-Development";
   window.open(targetURL, "_blank");
 }

@@ -341,7 +341,7 @@ body {
 .work1-observer {
   position: absolute;
   left: 15300px;
-  bottom: 100px;
+  bottom: 400px;
   width: 200px;
   height: 200px;
   z-index: 1;
@@ -350,7 +350,7 @@ body {
 .work2-observer {
   position: absolute;
   left: 16300px;
-  bottom: 100px;
+  bottom: 400px;
   width: 200px;
   height: 200px;
   z-index: 1;
@@ -359,7 +359,7 @@ body {
 .work3-observer {
   position: absolute;
   left: 17600px;
-  bottom: 100px;
+  bottom: 400px;
   width: 200px;
   height: 200px;
   z-index: 1;
@@ -368,7 +368,7 @@ body {
 .work4-observer {
   position: absolute;
   left: 18800px;
-  bottom: 100px;
+  bottom: 400px;
   width: 200px;
   height: 200px;
   z-index: 1;
@@ -1027,7 +1027,7 @@ body {
   width: 345px;
   border-radius: 30px;
   height: 450px;
-  background-color: white;
+  background-color: black;
   grid-area: 1 / 1 / 2 / 2;
 }
 
@@ -1035,7 +1035,7 @@ body {
   width: 345px;
   border-radius: 30px;
   height: 450px;
-  background-color: white;
+  background-color: black;
   grid-area: 1 / 2 / 2 / 3;
 }
 
@@ -1061,8 +1061,11 @@ body {
 
 .text-overlay-box > h1 {
   font-size: 2rem;
-  color: black;
+  color: rgba(255, 255, 255, 0.938);
+  font-weight: 500;
   text-align: center;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
   z-index: 1;
   position: relative;
   top: -185px;
@@ -1080,7 +1083,10 @@ body {
 
 .text-overlay-box-developer > h1 {
   font-size: 2rem;
-  color: black;
+  color: rgba(255, 255, 255, 0.938);
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 10px;
+  font-weight: 500;
   text-align: center;
   z-index: 1;
   position: relative;
@@ -1112,7 +1118,7 @@ body {
 }
 
 .gif-box7 {
-  background: url("https://media2.giphy.com/media/kHfUyPaDUDBY11l4DZ/200.webp?cid=ecf05e47r67pbjpjv0k0nw7l48apmgrvzr7p6mj48ci3tpxk&ep=v1_gifs_search&rid=200.webp&ct=g");
+  background: url("assets/gifs/webDev.gif");
 }
 
 .gif-box8 {
@@ -1133,14 +1139,14 @@ body {
   width: 230px;
   border-radius: 30px;
   height: 280px;
-  background-color: white;
+  background-color: black;
   grid-area: 1 / 1 / 2 / 2;
 }
 
 .design-box2 {
   width: 230px;
   border-radius: 30px;
-  background-color: white;
+  background-color: black;
   height: 280px;
   grid-area: 1 / 2 / 2 / 3;
 }
@@ -1148,7 +1154,7 @@ body {
 .design-box3 {
   width: 230px;
   border-radius: 30px;
-  background-color: white;
+  background-color: black;
   height: 280px;
   grid-area: 1 / 3 / 2 / 4;
 }
@@ -1156,7 +1162,7 @@ body {
 .design-box4 {
   width: 230px;
   border-radius: 30px;
-  background-color: white;
+  background-color: black;
   height: 280px;
   grid-area: 2 / 1 / 3 / 2;
 }
@@ -1164,7 +1170,7 @@ body {
 .design-box5 {
   width: 230px;
   border-radius: 30px;
-  background-color: white;
+  background-color: black;
   height: 280px;
   grid-area: 2 / 2 / 3 / 3;
 }
@@ -1173,7 +1179,7 @@ body {
   width: 230px;
   border-radius: 30px;
   height: 280px;
-  background-color: white;
+  background-color: black;
   grid-area: 2 / 3 / 3 / 4;
 }
 
@@ -1261,6 +1267,66 @@ body {
   background-image: url(assets/cd-exp4.png);
   width: 800px;
   height: 1000px;
+}
+
+.work-bushBack {
+  background-image: url(assets/work-bushBack.png);
+  height: 167px;
+  width: 318px;
+}
+
+.work-bushFront {
+  background-image: url(assets/work-bushFront.png);
+  height: 579px;
+  width: 995px;
+}
+
+#wbb-1 {
+  position: absolute;
+  left: 235px;
+  bottom: 560px;
+}
+
+#wbf-1 {
+  position: absolute;
+  left: -120px;
+  bottom: 400px;
+}
+
+#wbb-2 {
+  position: absolute;
+  left: 1235px;
+  bottom: 560px;
+}
+
+#wbf-2 {
+  position: absolute;
+  left: 880px;
+  bottom: 400px;
+}
+
+#wbb-3 {
+  position: absolute;
+  left: 2235px;
+  bottom: 560px;
+}
+
+#wbf-3 {
+  position: absolute;
+  left: 1880px;
+  bottom: 400px;
+}
+
+#wbb-4 {
+  position: absolute;
+  left: 3235px;
+  bottom: 560px;
+}
+
+#wbf-4 {
+  position: absolute;
+  left: 2880px;
+  bottom: 400px;
 }
 
 .find-me-container {
@@ -1367,6 +1433,28 @@ body {
 #find-me-icon:hover {
   -webkit-transform: scale(1.1);
   transform: scale(1);
+}
+
+#bird-blue {
+  position: absolute;
+  background: url("./assets/blueBirdLeft.png");
+  top: -80%;
+  right: -200%;
+  width: 400px;
+  height: 320px;
+  display: none;
+  z-index: 1;
+}
+
+#bird-yellow {
+  position: absolute;
+  background: url("./assets/yellowBirdLeft.png");
+  top: -75%;
+  right: -200%;
+  width: 400px;
+  height: 320px;
+  display: none;
+  z-index: 1;
 }
 
 #character {
