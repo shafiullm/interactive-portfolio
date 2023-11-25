@@ -1459,11 +1459,13 @@ body {
 #tree-5 {
   position: absolute;
   left: -500px;
+  cursor: pointer;
 }
 
 #tree-6 {
   position: absolute;
   left: -250px;
+  cursor: pointer;
 }
 
 #wbb-5 {
@@ -1479,11 +1481,13 @@ body {
 #tree-8 {
   position: absolute;
   left: 1075px;
+  cursor: pointer;
 }
 
 #tree-9 {
   position: absolute;
   left: 825px;
+  cursor: pointer;
 }
 
 #wbb-6 {
@@ -1494,6 +1498,46 @@ body {
 #tree-10 {
   position: absolute;
   left: 402px;
+}
+
+#firework-orange {
+  position: absolute;
+  left: -700px;
+  background: url("./assets/firework-orange.png");
+  width: 600px;
+  height: 600px;
+  top: -2500px;
+  display: none;
+}
+
+#firework-green {
+  position: absolute;
+  left: 600px;
+  background: url("./assets/firework-green.png");
+  width: 600px;
+  height: 600px;
+  top: -2300px;
+  display: none;
+}
+
+#firework-red {
+  position: absolute;
+  left: 0px;
+  background: url("./assets/firework-red.png");
+  width: 600px;
+  height: 600px;
+  top: -2300px;
+  display: none;
+}
+
+#firework-blue {
+  position: absolute;
+  left: 100px;
+  background: url("./assets/firework-blue.png");
+  width: 600px;
+  height: 600px;
+  top: -2500px;
+  display: none;
 }
 
 #bird-blue {
@@ -1522,7 +1566,6 @@ body {
   position: absolute;
   bottom: -14px;
   left: 1720px;
-  /* left: 3200px; */
   background: url("./assets/catWalkRightScaled.png");
   width: 228px;
   height: 192px;

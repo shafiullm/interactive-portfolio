@@ -448,10 +448,9 @@ function animateBlueBird() {
 }
 
 function animateYellowBird() {
-  // Check if the animation is already running
   if (!birdYellowFly) {
-    birdYellowFly = true; // Set the flag to indicate the animation is running
-    currentFrameYellow = 0; // Reset the frame counter
+    birdYellowFly = true;
+    currentFrameYellow = 0;
 
     animateBird(birdYellow, currentFrameYellow);
     anime({
@@ -468,6 +467,63 @@ function animateYellowBird() {
     });
   }
 }
+
+const totalFramesFirework = 90;
+const frameWidthFirework = 600;
+const frameIntervalFirework = 40;
+let currentFrameFirework = 0;
+
+function getRandomValue(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function animateFirework(currentFrame, color, left, top) {
+  const firework = document.getElementById(`firework-${color}`);
+  firework.style.display = "block";
+  firework.style.left = `${left}px`;
+  firework.style.top = `${top}px`;
+
+  const positionFirework = -currentFrame * frameWidthFirework;
+  firework.style.backgroundPosition = `${positionFirework}px 0`;
+
+  currentFrame = (currentFrame + 1) % totalFramesFirework;
+
+  if (currentFrame !== 0) {
+    requestAnimationFrame(() =>
+      animateFirework(currentFrame, color, left, top)
+    );
+  } else {
+    firework.style.display = "none";
+  }
+}
+
+function launchFirework(color) {
+  const left = getRandomValue(-700, 900);
+  const top = getRandomValue(-2500, -2000);
+
+  animateFirework(currentFrameFirework, color, left, top);
+}
+
+const fireworkOrangeButton = document.getElementById("tree-5");
+const fireworkRedButton = document.getElementById("tree-6");
+const fireworkGreenButton = document.getElementById("tree-8");
+const fireworkBlueButton = document.getElementById("tree-9");
+
+fireworkOrangeButton.addEventListener("click", () => {
+  launchFirework("orange");
+});
+
+fireworkRedButton.addEventListener("click", () => {
+  launchFirework("red");
+});
+
+fireworkGreenButton.addEventListener("click", () => {
+  launchFirework("green");
+});
+
+fireworkBlueButton.addEventListener("click", () => {
+  launchFirework("blue");
+});
 
 let findMeAnimated = false;
 
@@ -487,11 +543,28 @@ function animateFindMe() {
           scale: [1, 1.3],
           easing: "easeInOutQuad",
           duration: 1000,
+          complete: function () {
+            // Launch fireworks with random colors for 5 seconds
+            const endTime = Date.now() + 5000;
+
+            function launchRandomFirework() {
+              if (Date.now() < endTime) {
+                const colors = ["red", "green", "blue", "orange"];
+                const randomColor =
+                  colors[Math.floor(Math.random() * colors.length)];
+                launchFirework(randomColor);
+                setTimeout(launchRandomFirework, 1000);
+              }
+            }
+
+            launchRandomFirework();
+          },
         });
       },
     });
   }
 }
+
 function moveCharacter(direction) {
   console.log("Position:", position);
   if (blinkText) {
