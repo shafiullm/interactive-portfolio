@@ -92,10 +92,6 @@ body {
   zoom: 0.9;
 }
 
-#container {
-  zoom: 75%;
-}
-
 @media (max-width: 1920px) {
   #container {
     zoom: 70%;
@@ -1502,34 +1498,34 @@ body {
 
 #bird-blue {
   position: absolute;
-  background: url("./assets/blueBirdLeft.png");
+  background: url("./assets/blueBirdLeftScaled.png");
   top: -80%;
   right: -200%;
-  width: 400px;
-  height: 320px;
+  width: 240px;
+  height: 192px;
   display: none;
   z-index: 1;
 }
 
 #bird-yellow {
   position: absolute;
-  background: url("./assets/yellowBirdLeft.png");
+  background: url("./assets/yellowBirdLeftScaled.png");
   top: -75%;
   right: -200%;
-  width: 400px;
-  height: 320px;
+  width: 240px;
+  height: 192px;
   display: none;
   z-index: 1;
 }
 
 #cat {
   position: absolute;
-  bottom: -72px;
+  bottom: -14px;
   left: 1720px;
   /* left: 3200px; */
-  background: url("./assets/catWalkRight.png");
-  width: 380px;
-  height: 320px;
+  background: url("./assets/catWalkRightScaled.png");
+  width: 228px;
+  height: 192px;
 }
 
 #character {

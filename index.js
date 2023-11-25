@@ -77,7 +77,7 @@ const observer = new IntersectionObserver(
         entry.isIntersecting &&
         entry.target.classList.contains("findMe-observer")
       ) {
-        animateFindMe();
+        // animateFindMe();
       }
     });
   },
@@ -348,7 +348,7 @@ function animateCharacter(side) {
 }
 
 const totalFramesCat = 48;
-const frameWidthCat = 380;
+const frameWidthCat = 228;
 const frameIntervalCat = 25;
 let currentFrameCat = 0;
 let catWalk = false;
@@ -357,7 +357,6 @@ const cat = document.getElementById("cat");
 
 function animateCatWalk(currentFrame) {
   if (!catStopping) {
-    cat.style.transform = "scale(0.6)";
     cat.style.display = "block";
     const positionCat = -currentFrame * frameWidthCat;
     cat.style.backgroundPosition = `${positionCat}px 0`;
@@ -406,13 +405,12 @@ const birdYellow = document.getElementById("bird-yellow");
 let birdBlueFly = false;
 let birdYellowFly = false;
 const totalFrames = 30;
-const frameWidth = 400;
+const frameWidth = 240;
 let currentFrameBlue = 0;
 let currentFrameYellow = 0;
 const frameInterval = 20;
 
 function animateBird(bird, currentFrame) {
-  bird.style.transform = "scale(0.5)";
   bird.style.display = "block";
   const position = -currentFrame * frameWidth;
   bird.style.backgroundPosition = `${position}px 0`;
@@ -510,7 +508,8 @@ function moveCharacter(direction) {
     if (position > 9750) {
       return;
     } else if (position < 9750 && position > 9600) {
-      // animateFindMe();
+      //reaching end position
+      animateFindMe();
     }
     stopCharacterAnimation();
     animateCharacter("right");
