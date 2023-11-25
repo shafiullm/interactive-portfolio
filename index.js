@@ -349,7 +349,7 @@ function animateCharacter(side) {
 
 const totalFramesCat = 48;
 const frameWidthCat = 380;
-const frameIntervalCat = 30;
+const frameIntervalCat = 25;
 let currentFrameCat = 0;
 let catWalk = false;
 let catStopping = false; // New flag to indicate if the cat is stopping
@@ -357,7 +357,7 @@ const cat = document.getElementById("cat");
 
 function animateCatWalk(currentFrame) {
   if (!catStopping) {
-    // Check if the cat is in the process of stopping
+    cat.style.transform = "scale(0.6)";
     cat.style.display = "block";
     const positionCat = -currentFrame * frameWidthCat;
     cat.style.backgroundPosition = `${positionCat}px 0`;
@@ -412,6 +412,7 @@ let currentFrameYellow = 0;
 const frameInterval = 20;
 
 function animateBird(bird, currentFrame) {
+  bird.style.transform = "scale(0.5)";
   bird.style.display = "block";
   const position = -currentFrame * frameWidth;
   bird.style.backgroundPosition = `${position}px 0`;
@@ -437,7 +438,7 @@ function animateBlueBird() {
       targets: "#bird-blue",
       right: "500%",
       easing: "linear",
-      duration: 15000,
+      duration: 20000,
       complete: function (anim) {
         anim.reset();
         anime({ targets: "#bird-blue", right: "-200%", duration: 1 });
@@ -459,7 +460,7 @@ function animateYellowBird() {
       targets: "#bird-yellow",
       right: "500%",
       easing: "linear",
-      duration: 15000,
+      duration: 20000,
       complete: function (anim) {
         anim.reset();
         anime({ targets: "#bird-yellow", right: "-200%", duration: 1 });

@@ -1477,7 +1477,7 @@ body {
 
 #tree-7 {
   position: absolute;
-  left: 220px;
+  left: 215px;
 }
 
 #tree-8 {
@@ -1497,7 +1497,7 @@ body {
 
 #tree-10 {
   position: absolute;
-  left: 400px;
+  left: 402px;
 }
 
 #bird-blue {
@@ -1524,7 +1524,7 @@ body {
 
 #cat {
   position: absolute;
-  bottom: -20px;
+  bottom: -72px;
   left: 1720px;
   /* left: 3200px; */
   background: url("./assets/catWalkRight.png");
