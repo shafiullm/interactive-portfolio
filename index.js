@@ -9,6 +9,7 @@ const step = 100;
 let hasReachedEnd = false;
 let blinkText = true;
 let catStep = 0;
+const endPosition = 9750;
 let atEndPosition = false;
 let timeout;
 
@@ -641,7 +642,7 @@ function animateEndMessage() {
       easing: "easeInOutQuad",
       duration: 1500,
     });
-  }, 12000);
+  }, 1200000);
 }
 
 function animateStartCharacter() {
@@ -677,7 +678,7 @@ function moveCharacter(direction) {
     animateCharacter("left");
     position -= step;
   } else if (direction === "right") {
-    if (position > 9750) {
+    if (position > endPosition) {
       if (!hasReachedEnd) {
         hasReachedEnd = true;
         atEndPosition = true;
