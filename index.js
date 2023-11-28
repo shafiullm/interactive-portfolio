@@ -4,6 +4,7 @@ let houses = document.getElementById("buildingSmall");
 let housesBack = document.getElementById("buildingLarge");
 let platform = document.getElementById("platform");
 let mainLayer = document.getElementById("main-layer");
+let tapToMove = document.querySelector(".tapToMove-container");
 let position = 50;
 const step = 100;
 let hasReachedEnd = false;
@@ -298,11 +299,16 @@ function animateHobbies() {
 
 function stopBlinkText() {
   const blinkTextDiv = document.querySelector("#instruction-text");
-  const swipeToMoveDiv = document.querySelector("#swipeToMove-container");
+  const arrow = document.querySelectorAll(".arrow");
+  // const swipeToMoveDiv = document.querySelector("#swipeToMove-container");
+  arrow.forEach((arrows) => {
+    arrows.classList.remove("blink");
+    arrows.style.opacity = 0;
+  });
   blinkTextDiv.classList.remove("blink");
   blinkTextDiv.style.opacity = 0;
-  swipeToMoveDiv.classList.remove("blink");
-  blinkText = false;
+  // swipeToMoveDiv.classList.remove("blink");
+  tapToMove.blinkText = false;
 }
 
 animateOpeningBoard = () => {
@@ -590,10 +596,12 @@ function animateFindMe() {
       // Additional segment
       .add({
         complete: function () {
-          animateEndCharacter();
           setTimeout(() => {
             animateEndCharacter();
-          }, 3400);
+          }, 3000);
+          setTimeout(() => {
+            animateEndCharacter();
+          }, 6000);
         },
       });
   }
@@ -642,7 +650,7 @@ function animateEndMessage() {
       easing: "easeInOutQuad",
       duration: 1500,
     });
-  }, 12000);
+  }, 15000);
 }
 
 function animateStartCharacter() {
@@ -687,7 +695,7 @@ function moveCharacter(direction) {
         animateFindMe();
         setTimeout(() => {
           atEndPosition = false;
-        }, 12000);
+        }, 15000);
 
         return;
       }
@@ -751,16 +759,47 @@ window.addEventListener("wheel", function (event) {
   }
 });
 
-const swipeToMoveContainer = document.getElementById("swipeToMove-container");
-const hammer = new Hammer(swipeToMoveContainer);
+const leftArrow = document.querySelector(".left-arrow");
+const rightArrow = document.querySelector(".right-arrow");
 
-hammer.on("swipeleft", function () {
-  moveCharacter("right");
+let accelerationInterval; // Variable to store the interval for acceleration
+
+// Function to move character with acceleration
+function moveCharacterWithAcceleration(direction) {
+  moveCharacter(direction); // Initial move
+
+  // Set up acceleration interval
+  accelerationInterval = setInterval(() => {
+    moveCharacter(direction);
+  }, 100); // Adjust the interval duration as needed
+}
+
+// Add touchstart and touchend event listeners
+leftArrow.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moveCharacterWithAcceleration("left");
 });
 
-hammer.on("swiperight", function () {
-  moveCharacter("left");
+rightArrow.addEventListener("touchstart", (e) => {
+  e.preventDefault();
+  moveCharacterWithAcceleration("right");
 });
+
+// Stop acceleration when touch is released
+document.addEventListener("touchend", () => {
+  clearInterval(accelerationInterval);
+});
+
+// const swipeToMoveContainer = document.getElementById("swipeToMove-container");
+// const hammer = new Hammer(swipeToMoveContainer);
+
+// hammer.on("swipeleft", function () {
+//   moveCharacter("right");
+// });
+
+// hammer.on("swiperight", function () {
+//   moveCharacter("left");
+// });
 
 function detectMobileDevice() {
   const isMobile =
@@ -770,9 +809,11 @@ function detectMobileDevice() {
 
   if (isMobile) {
     const instructionText = document.getElementById("instruction-text");
-    instructionText.textContent = "Swipe Left or Right on the Platform to Move";
+    // instructionText.textContent = "Tap Left or Right on the Platform to Move";
+    instructionText.style.visibility = "hidden";
+    tapToMove.style.opacity = 1;
   } else {
-    swipeToMoveContainer.style.visibility = "hidden";
+    tapToMove.style.display = "none";
   }
 }
 
