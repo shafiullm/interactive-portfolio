@@ -6,8 +6,10 @@ let platform = document.getElementById("platform");
 let mainLayer = document.getElementById("main-layer");
 let position = 50;
 const step = 100;
+let hasReachedEnd = false;
 let blinkText = true;
 let catStep = 0;
+let atEndPosition = false;
 let timeout;
 
 const observer = new IntersectionObserver(
@@ -306,7 +308,7 @@ animateOpeningBoard = () => {
   anime({
     targets: "#signboard",
     translateY: -425,
-    delay: anime.stagger(100, { start: 500 }),
+    delay: anime.stagger(200, { start: 500 }),
   });
 };
 
@@ -497,11 +499,31 @@ function animateFirework(currentFrame, color, left, top) {
   }
 }
 
-function launchFirework(color) {
-  const left = getRandomValue(-700, 900);
-  const top = getRandomValue(-2500, -2000);
-
+function launchFirework(color, left, top) {
   animateFirework(currentFrameFirework, color, left, top);
+}
+
+function launchRandomFirework() {
+  const startTime = performance.now();
+  const duration = 3000; // 3 seconds
+
+  function launchRandomFireworkIteration() {
+    const currentTime = performance.now();
+    const elapsed = currentTime - startTime;
+
+    if (elapsed < duration) {
+      const colors = ["red", "green", "blue", "orange"];
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      const left = getRandomValue(-700, 900);
+      const top = getRandomValue(-2500, -2000);
+
+      launchFirework(randomColor, left, top);
+
+      setTimeout(launchRandomFireworkIteration, 1000);
+    }
+  }
+
+  launchRandomFireworkIteration();
 }
 
 const fireworkOrangeButton = document.getElementById("tree-5");
@@ -531,45 +553,122 @@ function animateFindMe() {
   if (!findMeAnimated) {
     findMeAnimated = true;
 
-    anime({
-      targets: [".find-me-container .find-me-item", ".social-link-container"],
-      translateY: -1000,
-      delay: anime.stagger(200, { direction: "normal" }),
-      easing: "easeInOutQuad",
-      complete: function () {
-        anime({
-          targets: ".social-link-container",
-          opacity: [0, 1],
-          scale: [1, 1.3],
-          easing: "easeInOutQuad",
-          duration: 1000,
-          complete: function () {
-            // Launch fireworks with random colors for 5 seconds
-            const endTime = Date.now() + 5000;
-
-            function launchRandomFirework() {
-              if (Date.now() < endTime) {
-                const colors = ["red", "green", "blue", "orange"];
-                const randomColor =
-                  colors[Math.floor(Math.random() * colors.length)];
-                launchFirework(randomColor);
-                setTimeout(launchRandomFirework, 1000);
-              }
-            }
-
+    anime
+      .timeline({
+        targets: [".find-me-container .find-me-item", ".social-link-container"],
+      })
+      // First 2 seconds
+      .add({
+        translateY: -1000,
+        delay: anime.stagger(200, { direction: "normal" }),
+        easing: "easeInOutQuad",
+      })
+      // Next 1 second
+      .add({
+        targets: ".social-link-container",
+        opacity: [0, 1],
+        scale: [1, 1.3],
+        easing: "easeInOutQuad",
+        duration: 1000,
+        complete: function () {
+          animateEndMessage();
+        },
+      })
+      // Next 3 seconds
+      .add({
+        complete: function () {
+          launchRandomFirework();
+          setTimeout(() => {
             launchRandomFirework();
-          },
-        });
-      },
-    });
+          }, 1500);
+          setTimeout(() => {
+            launchRandomFirework();
+          }, 3000);
+        },
+      })
+      // Additional segment
+      .add({
+        complete: function () {
+          animateEndCharacter();
+          setTimeout(() => {
+            animateEndCharacter();
+          }, 3400);
+        },
+      });
   }
 }
 
+function closeEndMessage() {
+  document.querySelector(".endMessage").style.display = "none";
+}
+
+const endCharacter = document.getElementById("endCharacterAnimation");
+let currentFrameECA = 0;
+const totalFramesECA = 119;
+const frameWidthECA = 320;
+const frameIntervalECA = 25;
+
+function animateEndCharacter() {
+  endCharacter.style.visibility = "visible";
+  character.style.visibility = "hidden";
+
+  const position = -currentFrameECA * frameWidthECA;
+  endCharacter.style.backgroundPosition = `${position}px 0`;
+
+  currentFrameECA = (currentFrameECA + 1) % totalFramesECA;
+
+  if (currentFrameECA !== 0) {
+    setTimeout(animateEndCharacter, frameIntervalECA);
+  } else {
+    endCharacter.style.visibility = "hidden";
+    character.style.visibility = "visible";
+  }
+}
+
+function animateEndMessage() {
+  document.querySelector(".endMessage").style.display = "block";
+  anime({
+    targets: ".endMessage",
+    opacity: [0, 1],
+    easing: "easeInOutQuad",
+    duration: 500,
+  });
+
+  setTimeout(() => {
+    anime({
+      targets: ".endMessage",
+      opacity: [1, 0],
+      easing: "easeInOutQuad",
+      duration: 1500,
+    });
+  }, 12000);
+}
+
+function animateStartCharacter() {
+  atEndPosition = true;
+  setTimeout(() => {
+    atEndPosition = false;
+  }, 2000);
+  anime({
+    targets: "#character",
+    translateY: [-4000, 0],
+    easing: "easeInOutBounce",
+    duration: 2000,
+  });
+}
+
 function moveCharacter(direction) {
+  if (atEndPosition) {
+    // Character is at the end position, do nothing
+    return;
+  }
+
   console.log("Position:", position);
+
   if (blinkText) {
     stopBlinkText();
   }
+
   if (direction === "left") {
     if (position < 10) {
       return;
@@ -579,11 +678,21 @@ function moveCharacter(direction) {
     position -= step;
   } else if (direction === "right") {
     if (position > 9750) {
+      if (!hasReachedEnd) {
+        hasReachedEnd = true;
+        atEndPosition = true;
+        //fix this
+        stopCharacterAnimation();
+        animateFindMe();
+        setTimeout(() => {
+          atEndPosition = false;
+        }, 12000);
+
+        return;
+      }
       return;
-    } else if (position < 9750 && position > 9600) {
-      //reaching end position
-      animateFindMe();
     }
+
     stopCharacterAnimation();
     animateCharacter("right");
     position += step;
@@ -697,7 +806,9 @@ window.addEventListener("load", (event) => {
 
   setTimeout(() => {
     animateOpeningBoard();
-  }, 1000);
+  }, 1500);
+
+  animateStartCharacter();
 
   detectMobileDevice();
 });

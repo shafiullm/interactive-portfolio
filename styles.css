@@ -542,12 +542,13 @@ body {
 
 .hobbies-instruction {
   position: relative;
-  bottom: 500px;
+  bottom: 525px;
   font-family: "Source Sans 3", sans-serif;
   font-weight: 300;
   color: white;
   text-align: center;
   opacity: 0;
+  font-size: 1.9rem;
 }
 
 .hobbies-text-box {
@@ -1579,4 +1580,59 @@ body {
   height: 320px;
   background: url("./assets/character/scooter-right.png");
   z-index: 1;
+  visibility: visible;
+}
+
+#endCharacterAnimation {
+  position: absolute;
+  bottom: 19.8%;
+  left: 50%;
+  width: 320px;
+  height: 400px;
+  background: url("./assets/character/endCharacterAnimation.png");
+  z-index: 1;
+  visibility: hidden;
+}
+
+.endMessage {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  width: 100%;
+  display: none;
+}
+
+.endMessage-bg {
+  background-color: #2874a4;
+  width: 50%;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 0px 0px 25px 25px;
+  border-right: 5px solid white;
+  border-bottom: 5px solid white;
+  border-left: 5px solid white;
+}
+
+.endMessage p {
+  margin: 0;
+  padding: 20px 35px 35px 35px;
+  font-family: "Source Sans 3", sans-serif;
+  font-size: 2rem;
+  color: white;
+}
+
+.endMessage p span {
+  display: block; /* Make the span a block-level element */
+}
+
+.closeButton {
+  color: white;
+  position: absolute;
+  top: 1%;
+  right: 1.5%;
+  cursor: pointer;
+  padding: 10px;
+  transform: scale(1.8);
 }
