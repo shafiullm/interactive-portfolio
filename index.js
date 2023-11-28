@@ -532,19 +532,19 @@ const fireworkGreenButton = document.getElementById("tree-8");
 const fireworkBlueButton = document.getElementById("tree-9");
 
 fireworkOrangeButton.addEventListener("click", () => {
-  launchFirework("orange");
+  launchRandomFirework();
 });
 
 fireworkRedButton.addEventListener("click", () => {
-  launchFirework("red");
+  launchRandomFirework();
 });
 
 fireworkGreenButton.addEventListener("click", () => {
-  launchFirework("green");
+  launchRandomFirework();
 });
 
 fireworkBlueButton.addEventListener("click", () => {
-  launchFirework("blue");
+  launchRandomFirework();
 });
 
 let findMeAnimated = false;
@@ -598,9 +598,9 @@ function animateFindMe() {
   }
 }
 
-function closeEndMessage() {
-  document.querySelector(".endMessage").style.display = "none";
-}
+// function closeEndMessage() {
+//   document.querySelector(".endMessage").style.display = "none";
+// }
 
 const endCharacter = document.getElementById("endCharacterAnimation");
 let currentFrameECA = 0;
