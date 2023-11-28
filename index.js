@@ -642,7 +642,7 @@ function animateEndMessage() {
       easing: "easeInOutQuad",
       duration: 1500,
     });
-  }, 1200000);
+  }, 12000);
 }
 
 function animateStartCharacter() {
