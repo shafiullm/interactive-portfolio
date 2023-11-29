@@ -709,7 +709,7 @@ function moveCharacter(direction) {
 
   anime({
     targets: houses,
-    backgroundPositionX: -position * 2 + "px",
+    backgroundPositionX: -position * 1.9 + "px",
     easing: "easeOutQuad",
   });
 
