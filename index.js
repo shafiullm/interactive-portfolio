@@ -933,7 +933,7 @@ function openGithub() {
 }
 
 function openLinkedIn() {
-  var instagramURL = "https://www.instagram.com/shafiullm";
+  var instagramURL = "https://www.linkedin.com/in/shafiullm/";
   window.open(instagramURL, "_blank");
 }
 

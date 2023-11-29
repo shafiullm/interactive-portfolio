@@ -901,9 +901,9 @@ body {
 }
 
 .javascript-tree {
-  background-image: url(./assets/tree-3.png);
+  background-image: url(./assets/tree-35.png);
   width: 157px;
-  height: 589px;
+  height: 664px;
 }
 
 .python-tree {
@@ -913,9 +913,9 @@ body {
 }
 
 .react-tree {
-  background-image: url(./assets/tree-3.png);
+  background-image: url(./assets/tree-35.png);
   width: 157px;
-  height: 589px;
+  height: 664px;
 }
 
 .sql-tree {
@@ -925,9 +925,9 @@ body {
 }
 
 .flutterDart-tree {
-  background-image: url(./assets/tree-1.png);
+  background-image: url(./assets/tree-25.png);
   width: 157px;
-  height: 289px;
+  height: 516px;
 }
 
 .skill-category-code {
